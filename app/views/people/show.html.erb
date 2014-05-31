@@ -1,50 +1,118 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>First name:</strong>
-  <%= @person.first_name %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
-  <%= @person.last_name %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @person.address %>
-</p>
-
-<p>
-  <strong>Dob:</strong>
-  <%= @person.dob %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @person.email %>
-</p>
-
-<p>
-  <strong>Current contact name:</strong>
-  <%= @person.current_contact_name %>
-</p>
-
-<p>
-  <strong>Current contact phone:</strong>
-  <%= @person.current_contact_phone %>
-</p>
-
-<p>
-  <strong>Current contact email:</strong>
-  <%= @person.current_contact_email %>
-</p>
-
-<p>
-  <strong>Current contact description:</strong>
-  <%= @person.current_contact_description %>
-</p>
-
-<%= link_to 'Edit', edit_person_path(@person) %> |
-<%= link_to 'Back', people_path %> |
-<%= link_to 'Print Badge', qr_person_path(@person), :target => "_blank" %>
+<div class="ui four column page grid">
+  <div class="row">
+    <div class="column"><small>Basic Details</small></div>
+    <div class="column">
+      <small>First Name</small>
+      <div class="details"><%=  @person.first_name %></div>
+    </div>
+    <div class="column">
+      <small>Last Name</small>
+      <div class="details"><%=  @person.last_name %></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="column"></div>
+    <div class="column">
+      <small>Dob</small>
+      <div class="details"><%=  @person.dob %></div>
+    </div>
+    <div class="column">
+      <small>Sex</small>
+      <div class="details"><%=  @person.sex %></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="column"></div>
+    <div class="column">
+      <small>Has Privacy Concerns</small>
+      <div class="details"><%= @person.has_privacy_concerns ? 'yes' : 'no' %></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="column"></div>
+    <div class="column">
+      <small>Mobile</small>
+      <div class="details"><%=  @person.mobile %></div>
+    </div>
+    <div class="column">
+      <small>Email</small>
+      <div class="details"><%=  @person.email %></div>
+    </div>
+    <div class="column">
+      <small>Address</small>
+      <div class="details"><%=  @person.address %></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="column"></div>
+    <div class="column">
+      <small>Suburb</small>
+      <div class="details"><%=  @person.suburb %></div>
+    </div>
+    <div class="column">
+      <small>State</small>
+      <div class="details"><%=  @person.state %></div>
+    </div>
+    <div class="column">
+      <small>Postcode</small>
+      <div class="details"><%=  @person.postcode %></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="column">
+      <small>Current Contact</small>
+    </div>
+    <div class="column">
+      <small>Name</small>
+      <div class="details"><%=  @person.current_contact_name %></div>
+    </div>
+    <div class="column">
+      <small>Phone</small>
+      <div class="details"><%=  @person.current_contact_phone %></div>
+    </div>
+    <div class="column">
+      <small>Email</small>
+      <div class="details"><%=  @person.current_contact_email %></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="column"></div>
+    <div class="column three wide">
+      <small>Description</small>
+      <div class="details"><%=  @person.current_contact_description %></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="column">status</div>
+    <div class="column two wide">
+      <small>Injury Description</small>
+      <div class="details"><%=  @person.injury_description %></div>
+    </div>
+    <div class="column">
+      <small>Transport</small>
+      <div class="details"><%=  @person.transport %></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="column"></div>
+    <div class="column">
+      <small>House Status</small>
+      <div class="details"><%=  @person.house_status %></div>
+    </div>
+    <div class="column">
+      <small>Others at Address</small>
+      <div class="details"><%=  @person.others_at_address %></div>
+    </div>
+    <div class="column">
+      <small>Pet Details</small>
+      <div class="details"><%=  @person.pet_details %></div>
+    </div>
+  </div>
+  <div class="row"><div class="column">
+  <%= link_to 'Edit', edit_person_path(@person) %> |
+  <%= link_to 'Back', people_path %> |
+  <%= link_to 'Print Badge', qr_person_path(@person), :target => "_blank" %>
+  </div></div>
+</div>

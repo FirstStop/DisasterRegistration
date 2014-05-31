@@ -6,21 +6,15 @@ class CreatePeople < ActiveRecord::Migration
 
       t.date :dob
       t.string :sex
-      t.boolean :has_privacy_concerns      
+      t.boolean :has_privacy_concerns
 
       t.string :mobile
-      t.string :temporary_telephone
-      t.string :temporary_telephone_description
-
       t.string :email
-      t.string :temporary_email
-      t.string :temporary_email_description
 
       t.string :current_contact_name
       t.string :current_contact_phone
       t.string :current_contact_email
       t.text :current_contact_description
-
 
       t.string :injury_description
       t.string :transport
