@@ -46,15 +46,5 @@
 </p>
 
 <%= link_to 'Edit', edit_person_path(@person) %> |
-<%= link_to 'Back', people_path %>
-
-
-<div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>
-
-<script type="text/javascript">
-	var qrcode = new QRCode(document.getElementById("qrcode"), {
-		width : 100,
-		height : 100
-	});
-	qrcode.makeCode('<%= @person_data %>');
-</script>
+<%= link_to 'Back', people_path %> |
+<%= link_to 'Print Badge', qr_person_path(@person), :target => "_blank" %>

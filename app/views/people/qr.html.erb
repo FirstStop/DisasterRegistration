@@ -1,0 +1,13 @@
+<p>Please present this badge to other emergency responders.</p>
+
+<div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>
+
+<script type="text/javascript">
+	var qrcode = new QRCode(document.getElementById("qrcode"), {
+		width : 200,
+		height : 200
+	});
+	qrcode.makeCode('<%= @person_data %>');
+	
+	window.print();
+</script>

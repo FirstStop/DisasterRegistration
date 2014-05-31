@@ -1,5 +1,5 @@
 class PeopleController < ApplicationController
-  before_action :set_person, only: [:show, :edit, :update, :destroy]
+  before_action :set_person, only: [:show, :edit, :update, :destroy, :qr]
 
   # GET /people
   # GET /people.json
@@ -10,6 +10,11 @@ class PeopleController < ApplicationController
   # GET /people/1
   # GET /people/1.json
   def show
+    @person_data = @person.first_name + ' ' + @person.last_name
+  end
+
+  # GET /people/1/qr
+  def qr
     @person_data = @person.first_name + ' ' + @person.last_name
   end
 
