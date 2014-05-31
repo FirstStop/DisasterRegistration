@@ -10,6 +10,7 @@ class PeopleController < ApplicationController
   # GET /people/1
   # GET /people/1.json
   def show
+    @person_data = @person.first_name + ' ' + @person.last_name
   end
 
   # GET /people/new
