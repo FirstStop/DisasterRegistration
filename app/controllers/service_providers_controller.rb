@@ -1,5 +1,5 @@
 class ServiceProvidersController < ApplicationController
-  before_action :set_service_provider, only: [:show, :edit, :update, :destroy]
+  before_action :set_service_provider, only: [:show, :edit, :update, :destroy, :add_person]
   before_action :set_menu
   def set_menu
     @menu = {service_providers: true}
@@ -20,6 +20,7 @@ class ServiceProvidersController < ApplicationController
   def add_person
     uuid = params[:uuid]
     @person = Person.find_by_uuid(uuid)
+    @service_provider.clients << @person
     redirect_to @person, notice: @person.first_name + ' ' + @person.last_name + ' was added to your client list.'
   end
 
