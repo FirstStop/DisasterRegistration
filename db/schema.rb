@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140601012237) do
+ActiveRecord::Schema.define(version: 20140601014010) do
+
+  create_table "authenticables", force: true do |t|
+    t.string "username"
+    t.string "encrypted_password"
+    t.string "salt"
+    t.string "type"
+    t.string "authenticable_object_type"
+    t.string "authenticable_object_id"
+  end
 
   create_table "people", force: true do |t|
     t.string   "first_name"

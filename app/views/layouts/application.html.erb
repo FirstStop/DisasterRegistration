@@ -32,12 +32,19 @@
   <div class="column four wide">
     <%= image_tag("firststop_logo_sml.png") %>
   </div>
+
+
   <div class="right floated column two wide">
-    <span class="ui blue button">
-      <i class="user icon"></i>
-      Login
-    </span>
+    <% if current_user %>
+
+    <% else %>
+        <a href="<%= session_login_path %>" class="ui blue button">
+          <i class="user icon"></i>
+          Login
+        </a>
+    <% end %>
   </div>
+
 </div></div>
 
 <div class="ui menu">

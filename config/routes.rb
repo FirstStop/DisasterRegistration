@@ -5,6 +5,10 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'session/login'
+  post 'session/login'
+  get 'session/logout'
+
   resources :people do
     member do
       get 'qr'
