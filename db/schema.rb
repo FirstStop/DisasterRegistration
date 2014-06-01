@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140601012237) do
+ActiveRecord::Schema.define(version: 20140601031212) do
 
   create_table "people", force: true do |t|
     t.string   "first_name"
@@ -40,6 +40,11 @@ ActiveRecord::Schema.define(version: 20140601012237) do
   end
 
   add_index "people", ["uuid"], name: "index_people_on_uuid"
+
+  create_table "people_providers", force: true do |t|
+    t.integer "person_id"
+    t.integer "service_provider_id"
+  end
 
   create_table "service_providers", force: true do |t|
     t.string   "name"
