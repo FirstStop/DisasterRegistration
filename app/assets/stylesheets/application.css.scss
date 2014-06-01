@@ -14,3 +14,14 @@
  */
  
 @import "semantic-ui";
+
+
+#login {
+  margin-bottom: 100px;
+}
+
+@media print {
+.no-print {
+    display:none;
+  }
+}
