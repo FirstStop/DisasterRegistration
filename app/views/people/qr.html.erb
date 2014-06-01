@@ -1,10 +1,10 @@
-<div style="width:400px;border:1px black dashed;padding:15px;">
+<div style="width:450px;border:1px black dashed;padding:15px;">
 	<p style="margin:0;">Please present this badge to other emergency responders.</p>
 	<div style="padding:15px;">
 		<div id="qrcode" style="width:200px; height:200px;display:inline-block;"></div>
-		<div style="display:inline-block;vertical-align:top;margin-left:20px;">
+		<div style="width:190px;display:inline-block;vertical-align:top;margin-left:20px;">
 		  	<p style="font-size:18pt;margin:0;"><%=  @person.first_name %> <%=  @person.last_name %></p>
-			<p><%=  @person.address %></p>
+			<p><%=  @person.address %>, <%=  @person.suburb %>, <%=  @person.state %></p>
 		</div>
 	</div>
 	<p style="margin:0;font-size:10pt;">By presenting this badge to a service provider you agree to let them access your personal information.</p>
