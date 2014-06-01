@@ -1,6 +1,6 @@
 class Authenticable < ActiveRecord::Base
   validates :username, :presence => true, :uniqueness => true
-  validates :password, :confirmation => true
+  #validates :password, :confirmation => true
 
   before_save :encrypt_password
   after_save :clear_password
