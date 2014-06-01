@@ -9,6 +9,16 @@
         <div class="details"><%=  @service_provider.name %></div>
       </div>
     </div>
+    <div class="row">
+      <div class="column">
+        <small>Services and Supplies</small>
+        <div class="details"><ul>
+        <%  @service_provider.services_supplies.split("\n").each do |service| %>
+          <li><%= service %></li>
+        <% end %>
+        </ul></div>
+        </div>
+    </div>
     <div class="row"><div class="column">
       <%= link_to 'Edit', edit_service_provider_path(@service_provider) %> |
       <%= link_to 'Back', service_providers_path %>
