@@ -117,13 +117,14 @@
       <%= f.text_field :pet_details %>
     </div>
   </div>
-</div>
 
-<%= f.fields_for :authenticable do |builder| %>
-    <%= render "session/form", :f => builder %>
-<% end %>
+    <%= f.fields_for :authenticable do |builder| %>
+        <%= render "session/form", :f => builder %>
+    <% end %>
 
-<div class="actions">
-  <%= f.submit %>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+
 </div>
 <% end %>

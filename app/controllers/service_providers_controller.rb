@@ -27,6 +27,7 @@ class ServiceProvidersController < ApplicationController
   # GET /service_providers/new
   def new
     @service_provider = ServiceProvider.new
+    @service_provider.authenticable = Authenticable.new
   end
 
   # GET /service_providers/1/edit
@@ -36,7 +37,10 @@ class ServiceProvidersController < ApplicationController
   # POST /service_providers
   # POST /service_providers.json
   def create
-    @service_provider = ServiceProvider.new(service_provider_params)
+    @service_provider = ServiceProvider.new
+    @service_provider.authenticable = Authenticable.new
+    @service_provider.update(service_provider_params)
+    puts service_provider_params
 
     respond_to do |format|
       if @service_provider.save
@@ -81,6 +85,6 @@ class ServiceProvidersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def service_provider_params
-      params.require(:service_provider).permit(:name, :services_supplies)
+      params.require(:service_provider).permit(:name, :services_supplies, :authenticable_attributes => [:username, :password, :password_confirmation])
     end
 end

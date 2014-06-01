@@ -1,12 +1,12 @@
 <h1>Login</h1>
 
+<div id="error_explanation">
+  <p><%= notice %></p>
+</div>
+
 <%= form_tag session_login_path  do %>
     <div class="ui error form segment">
       <div class="ui blue segment">
-        <div id="error_explanation">
-          <p><%= notice %></p>
-        </div>
-
         <div class="field">
           <%= label_tag :username %><br>
           <%= text_field_tag :username %>

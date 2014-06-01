@@ -18,6 +18,6 @@ class SessionController < ApplicationController
 
   def logout
     session[:user_id] = nil
-    redirect_to root_path, notice: 'Successfully logged out'
+    redirect_to root_path
   end
 end

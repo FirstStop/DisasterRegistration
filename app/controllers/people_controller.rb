@@ -25,6 +25,7 @@ class PeopleController < ApplicationController
   # GET /people/new
   def new
     @person = Person.new
+    @person.authenticable = Authenticable.new
   end
 
   # GET /people/1/edit
@@ -34,7 +35,9 @@ class PeopleController < ApplicationController
   # POST /people
   # POST /people.json
   def create
-    @person = Person.new(person_params)
+    @person = Person.new
+    @person.authenticable = Authenticable.new
+    @person.update(person_params)
 
     respond_to do |format|
       if @person.save
@@ -84,7 +87,9 @@ class PeopleController < ApplicationController
           :first_name, :last_name, :dob, :sex, :has_privacy_concerns, :mobile, :email,
           :address, :suburb, :state, :postcode,
           :current_contact_name, :current_contact_phone, :current_contact_email, :current_contact_description,
-          :injury_description, :transport, :house_status, :others_at_address, :pet_details
+          :injury_description, :transport, :house_status, :others_at_address, :pet_details,
+
+          :authenticable_attributes => [:username, :password, :password_confirmation]
       )
     end
 end

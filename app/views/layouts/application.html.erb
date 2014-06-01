@@ -36,7 +36,11 @@
 
         <div class="right floated column four wide">
           <% if current_user %>
-
+              Welcome, <%= current_user.username %>!
+              <a href="<%= session_logout_path %>" class="ui blue button">
+                <i class="user icon"></i>
+                Logout
+              </a>
           <% else %>
           <a href="<%= session_login_path %>" class="ui blue button" id="login">
             <i class="user icon"></i>Login

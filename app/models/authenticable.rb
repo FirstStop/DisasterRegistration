@@ -10,7 +10,7 @@ class Authenticable < ActiveRecord::Base
   belongs_to :authenticable_object, polymorphic: true
 
   def self.authenticate(username, password)
-    user = self.find_by_username(username)
+    user = Authenticable.find_by_username(username)
 
     if user && user.match_password(password)
       return user
