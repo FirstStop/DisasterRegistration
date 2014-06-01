@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20140601031212) do
     t.string "username"
     t.string "encrypted_password"
     t.string "salt"
+    t.string "type"
     t.string "authenticable_object_type"
     t.string "authenticable_object_id"
   end
