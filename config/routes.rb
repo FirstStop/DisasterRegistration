@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   end
 
   get 'session/login'
-  post 'session/login'
+  post 'session/login' => 'session#do_login'
   get 'session/logout'
 
   resources :people do
