@@ -1,5 +1,11 @@
 <div style="width:450px;border:1px black dashed;padding:15px;">
-	<p style="margin:0;">Please present this badge to other emergency responders.</p>
+	<p style="margin:0;">Hi <%= @person.first_name %></p>
+	<p>It’s going to be okay. </p>
+	<p>This QR code is your FirstStop towards your journey through the recovery process. </p>
+	<p>You will be talking to a lot of people over then next week, all of whom will want to know your details. By showing them a print-out of your details or allowing them to scan your QR code you will be able to easily transfer your details to all these agencies and service providers so that you get the support and services you need.	</p>
+	<p></p>
+	<p style="margin-top:40px">Everyone is here to help.</p>
+	
 	<div style="padding:15px;">
 		<div id="qrcode" style="width:200px; height:200px;display:inline-block;"></div>
 		<div style="width:190px;display:inline-block;vertical-align:top;margin-left:20px;">
@@ -7,7 +13,14 @@
 			<p><%=  @person.address %>, <%=  @person.suburb %>, <%=  @person.state %>, <%=  @person.postcode %></p>
 		</div>
 	</div>
-	<p style="margin:0;font-size:10pt;">By presenting this badge to a service provider you agree to let them access your personal information.</p>
+	
+	<div style="font-size:10pt;">
+		<p>This QR code has been created to store your personal details on our centralised database. We only use the information for the purpose for which it was provided and do not provide personal information to third parties.</p>
+
+		 <p>Allowing each agency and service provider to scan your QR code will enable them to access your details and store them on their own databases.</p>
+
+		<p style="margin:0;">While we take reasonable steps to ensure your personal information is stored securely, no data transmission over the Internet is entirely secure.</p>
+	</div>
 </div>
 
 <script type="text/javascript">
