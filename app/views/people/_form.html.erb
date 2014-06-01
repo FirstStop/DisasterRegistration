@@ -119,6 +119,10 @@
   </div>
 </div>
 
+<%= f.fields_for :authenticable do |builder| %>
+    <%= render "session/form", :f => builder %>
+<% end %>
+
 <div class="actions">
   <%= f.submit %>
 </div>

@@ -1,0 +1,26 @@
+<h1>Login</h1>
+
+<%= form_tag session_login_path  do %>
+    <div class="ui error form segment">
+      <div class="ui blue segment">
+        <div id="error_explanation">
+          <p><%= notice %></p>
+        </div>
+
+        <div class="field">
+          <%= label_tag :username %><br>
+          <%= text_field_tag :username %>
+        </div>
+
+        <div class="field">
+          <%= label_tag :password %><br>
+          <%= password_field_tag :password %>
+        </div>
+
+        <div class="actions">
+          <%= submit_tag 'Sign in' %>
+        </div>
+      </div>
+    </div>
+<% end %>
+

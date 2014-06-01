@@ -27,8 +27,34 @@
 
 </head>
 <body>
-
 <div class="ui one column page grid"><div class="row"><div class="column">
+<div class="ui grid"><div class="row">
+  <div class="column four wide">
+    <%= image_tag("firststop_logo_sml.png") %>
+  </div>
+
+
+  <div class="right floated column two wide">
+    <% if current_user %>
+
+    <% else %>
+        <a href="<%= session_login_path %>" class="ui blue button">
+          <i class="user icon"></i>
+          Login
+        </a>
+    <% end %>
+  </div>
+
+</div></div>
+
+<div class="ui menu">
+  <a class="<%if @menu[:people]%>active<%end%> item" href="/people">
+    <i class="users icon"></i> People
+  </a>
+  <a class="<%if @menu[:service_providers]%>active<%end%> item" href="/service_providers">
+    <i class="ambulance icon"></i> Service Providers
+  </a>
+</div>
   <%= yield %> 
 </div></div></div>
 
