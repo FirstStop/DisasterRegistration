@@ -10,12 +10,12 @@ class PeopleController < ApplicationController
   # GET /people/1
   # GET /people/1.json
   def show
-    @person_data = @person.first_name + ' ' + @person.last_name
   end
 
   # GET /people/1/qr
   def qr
-    @person_data = @person.first_name + ' ' + @person.last_name
+    @person_data = @person.uuid
+    # @person_data = @person.first_name + ' ' + @person.last_name
   end
 
   # GET /people/new

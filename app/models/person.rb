@@ -7,6 +7,6 @@ class Person < ActiveRecord::Base
 
   private
   def create_uuid
-    self.id = SecureRandom.uuid
+    self.uuid = SecureRandom.uuid
   end
 end

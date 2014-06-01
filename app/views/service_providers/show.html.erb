@@ -74,7 +74,7 @@
 
 	    if (webkit) {
 	        video.src = window.webkitURL.createObjectURL(stream);
-	    } else if(moz) {
+	    } else if (moz) {
 	        video.mozSrcObject = stream;
 	        video.play();
 	    } else {
@@ -94,10 +94,9 @@
 	    try {
 	        gCtx.drawImage(video, 0, 0);
 			try {
-				var associateUrl = qrcode.decode();
+				var personId = qrcode.decode();
 				closeWebcam();
-				associateUrl = 'associate/123';
-				window.location.href = associateUrl;
+				window.location.href += '/add_person?UUID=' + personId;
 			} catch(e) {
 				console.log(e);
 				setTimeout(captureToCanvas, 500);
