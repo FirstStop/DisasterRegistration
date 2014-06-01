@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140531064325) do
+ActiveRecord::Schema.define(version: 20140601003711) do
 
   create_table "people", force: true do |t|
     t.string   "first_name"
@@ -36,6 +36,9 @@ ActiveRecord::Schema.define(version: 20140531064325) do
     t.text     "pet_details"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "uuid"
   end
+
+  add_index "people", ["uuid"], name: "index_people_on_uuid"
 
 end
