@@ -1,5 +1,9 @@
 class PeopleController < ApplicationController
   before_action :set_person, only: [:show, :edit, :update, :destroy, :qr]
+  before_action :set_menu
+  def set_menu
+    @menu = {people: true}
+  end
 
   # GET /people
   # GET /people.json
