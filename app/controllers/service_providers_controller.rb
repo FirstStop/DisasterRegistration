@@ -14,6 +14,9 @@ class ServiceProvidersController < ApplicationController
   
   # GET /service_providers/1/add_person
   def add_person
+    uuid = params[:uuid]
+    @person = Person.find_by_uuid(uuid)
+    redirect_to @person, notice: @person.first_name + ' ' + @person.last_name + ' was added to your client list.'
   end
 
   # GET /service_providers/new
