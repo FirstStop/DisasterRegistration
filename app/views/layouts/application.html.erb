@@ -36,7 +36,6 @@
 
         <div class="right floated column five wide">
           <% if current_user %>
-              Welcome, <%= current_user.username %>!
               <a href="<%= session_logout_path %>" class="ui blue button">
                 <i class="user icon"></i>
                 Logout
