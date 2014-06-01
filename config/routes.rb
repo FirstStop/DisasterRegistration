@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   end
 
   root :to => 'welcome#index'
+  get 'checklist' => 'welcome#checklist'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
