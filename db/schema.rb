@@ -41,4 +41,10 @@ ActiveRecord::Schema.define(version: 20140601003711) do
 
   add_index "people", ["uuid"], name: "index_people_on_uuid"
 
+  create_table "service_providers", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
 end
