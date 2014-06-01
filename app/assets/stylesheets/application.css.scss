@@ -21,10 +21,19 @@
   top: -50px;
 }
 
+body,td,th {
+  font-family: "Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, sans-serif;
+  color: #5C5A5A;
+}
+
 @media print {
 .no-print {
     display:none;
   }
+}
+
+.ui.menu {
+  margin-top: -7px;
 }
 
 

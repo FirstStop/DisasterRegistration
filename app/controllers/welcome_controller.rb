@@ -6,4 +6,7 @@ class WelcomeController < ApplicationController
 
   def index
   end
+
+  def checklist
+  end
 end

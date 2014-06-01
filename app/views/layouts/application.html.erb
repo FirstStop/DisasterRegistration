@@ -48,14 +48,19 @@
           <span><%= image_tag("people.png", height:'100px') %></span>
         </div>
       </div></div>
-
+      <%= image_tag('lne.png', width:'100%') %>
       <div class="ui menu">
+        <a class="item" href="/">Home</a>
         <a class="<%if @menu[:people]%>active red<%end%> item" href="/people">
-          People
+          People Register
         </a>
+        <a class="item" href="/people">People Finder</a>
+        <a class="item" href="/checklist">Checklists</a>
         <a class="<%if @menu[:service_providers]%>active blue<%end%> item" href="/service_providers">
           Service Providers
         </a>
+        <a class="right floated item" href="#">Contact</a>
+        <a class="right floated item" href="#">About</a>
       </div>
     </div>
     <%= yield %> 
