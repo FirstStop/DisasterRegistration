@@ -11,7 +11,98 @@
     </div>
     <div class="row"><div class="column">
       <%= link_to 'Edit', edit_service_provider_path(@service_provider) %> |
-      <%= link_to 'Back', service_providers_path %>
+      <%= link_to 'Back', service_providers_path %> |
+	  <a href="javascript:setWebcam();">Scan Badge</a>
     </div></div>
   </div>
+
+	<div id="qr_scanner" style="display:none;">
+		<video id="video" style="height:200px;" autoplay></video>
+		<canvas id="qr-canvas" width="800" height="600" style="display:none;width:800px;height:600px;"></canvas>
+	</div>
 </div>
+
+<script type="text/javascript">
+    var scannerEnabled = false;
+	setWebcam = function() {
+		if (scannerEnabled) {
+			closeWebcam();
+			return;
+		}
+	    document.getElementById("qr_scanner").style.display = 'block';
+		scannerEnabled = true;
+
+	    if (navigator.getUserMedia) {
+	        navigator.getUserMedia({video: true, audio: false}, setWebcamComplete, setWebcamError);
+	    } else if (navigator.webkitGetUserMedia) {
+	        webkit=true;
+			window.console.log('webkit');
+	        navigator.webkitGetUserMedia({video: true, audio: false}, setWebcamComplete, setWebcamError);
+	    } else if (navigator.mozGetUserMedia) {
+	        moz=true;
+			window.console.log('moz');
+	        navigator.mozGetUserMedia({video: true, audio: false}, setWebcamComplete, setWebcamError);
+	    }
+	    // 
+	    // //document.getElementById("qrimg").src="qrimg2.png";
+	    // //document.getElementById("webcamimg").src="webcam.png";
+	    // document.getElementById("qrimg").style.opacity=0.2;
+	    // document.getElementById("webcamimg").style.opacity=1.0;
+	    // 
+	    // stype=1;
+	    // setTimeout(captureToCanvas, 500);
+	}
+	
+	closeWebcam = function() {
+	    document.getElementById("qr_scanner").style.display = 'none';
+		scannerEnabled = false;
+	}
+
+	setWebcamComplete = function(stream) {
+		window.console.log('camCapture');
+		//var video = document.getElementById("video");
+
+	    if (webkit) {
+	        video.src = window.webkitURL.createObjectURL(stream);
+	    } else if(moz) {
+	        video.mozSrcObject = stream;
+	        video.play();
+	    } else {
+	        video.src = stream;
+		}
+		setTimeout(captureToCanvas, 500);
+	}
+
+	setWebcamError = function() {
+		window.console.log('setWebcamError');
+	}
+	
+	captureToCanvas = function() {
+		if (!scannerEnabled) {
+			return;
+		}
+	    try {
+	        gCtx.drawImage(video, 0, 0);
+			try {
+				var associateUrl = qrcode.decode();
+				closeWebcam();
+				associateUrl = 'associate/123';
+				window.location.href = associateUrl;
+			} catch(e) {
+				console.log(e);
+				setTimeout(captureToCanvas, 500);
+			};
+	    } catch(e) {
+			console.log(e);
+			setTimeout(captureToCanvas, 500);
+		};
+	}
+	
+	init = function() {
+	    gCanvas = document.getElementById("qr-canvas");
+	    gCtx = gCanvas.getContext("2d");
+	    gCtx.clearRect(0, 0, 800, 600);
+		video = document.getElementById("video");
+	}
+	init();
+</script>

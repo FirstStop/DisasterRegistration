@@ -11,6 +11,10 @@ class ServiceProvidersController < ApplicationController
   # GET /service_providers/1.json
   def show
   end
+  
+  # GET /service_providers/1/add_person
+  def add_person
+  end
 
   # GET /service_providers/new
   def new

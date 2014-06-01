@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :service_providers
+  resources :service_providers do
+    member do
+      get 'add_person'
+    end
+  end
 
   resources :people do
     member do
