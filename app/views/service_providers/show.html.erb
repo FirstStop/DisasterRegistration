@@ -19,18 +19,20 @@
         </ul></div>
         </div>
     </div>
-	</div><%= @service_provider.clients.size %> clients total</div>
+
+	<div><%= @service_provider.clients.size %> clients total</div>
+	
+	<div id="qr_scanner" style="display:none;margin-left:20px;">
+		<video id="video" style="height:200px;" autoplay></video>
+		<canvas id="qr-canvas" width="800" height="600" style="display:none;width:800px;height:600px;"></canvas>
+	</div>
+	
     <div class="row"><div class="column">
       <%= link_to 'Edit', edit_service_provider_path(@service_provider) %> |
       <%= link_to 'Back', service_providers_path %> |
 	  <a href="javascript:setWebcam();">Scan Badge</a>
     </div></div>
   </div>
-
-	<div id="qr_scanner" style="display:none;">
-		<video id="video" style="height:200px;" autoplay></video>
-		<canvas id="qr-canvas" width="800" height="600" style="display:none;width:800px;height:600px;"></canvas>
-	</div>
 </div>
 
 <script type="text/javascript">
