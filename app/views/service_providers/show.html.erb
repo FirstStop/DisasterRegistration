@@ -2,111 +2,135 @@
 
 <div class="ui blue segment">
   <h3>Basic Details</h3>
+
   <div class="ui one column grid">
     <div class="row">
       <div class="column">
         <small>Name</small>
-        <div class="details"><%=  @service_provider.name %></div>
+        <div class="details"><%= @service_provider.name %></div>
       </div>
     </div>
     <div class="row">
       <div class="column">
         <small>Services and Supplies</small>
-        <div class="details"><ul>
-        <%  @service_provider.services_supplies.split("\n").each do |service| %>
-          <li><%= service %></li>
-        <% end %>
-        </ul></div>
+        <div class="details">
+          <ul>
+            <% @service_provider.services_supplies.split("\n").each do |service| %>
+              <li><%= service %></li>
+            <% end %>
+          </ul>
         </div>
+      </div>
     </div>
 
-	<div><%= @service_provider.clients.size %> clients total</div>
-	
-    <div class="row"><div class="column">
-      <%= link_to 'Edit', edit_service_provider_path(@service_provider) %> |
-      <%= link_to 'Back', service_providers_path %> |
-	  <a href="javascript:setWebcam();">Scan Badge</a>
-    </div></div>
+    <div class="row">
+      <div class="column">
+        <%= link_to 'Edit', edit_service_provider_path(@service_provider) %> |
+        <%= link_to 'Back', service_providers_path %> |
+        <a href="javascript:setWebcam();">Scan Badge</a>
+      </div>
+    </div>
 
-	<div id="qr_scanner" style="display:none;margin-left:20px;margin-top:20px;">
-		<video id="video" style="height:200px;" autoplay></video>
-		<canvas id="qr-canvas" width="800" height="600" style="display:none;width:800px;height:600px;"></canvas>
-	</div>
+    <div id="qr_scanner" style="display:none;margin-left:20px;margin-top:20px;">
+      <video id="video" style="height:200px;" autoplay></video>
+      <canvas id="qr-canvas" width="800" height="600" style="display:none;width:800px;height:600px;"></canvas>
+    </div>
   </div>
+
+  <table class="ui table segment">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>DOB</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @service_provider.clients.each do |person| %>
+      <tr>
+        <td><%= link_to person.name, person %></td>
+        <td><%= person.dob %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <%= @service_provider.clients.size %> clients total
 </div>
 
 <script type="text/javascript">
-    var scannerEnabled = false;
-	setWebcam = function() {
-		if (scannerEnabled) {
-			closeWebcam();
-			return;
-		}
-	    document.getElementById("qr_scanner").style.display = 'block';
-		scannerEnabled = true;
+  var scannerEnabled = false;
+  setWebcam = function () {
+    if (scannerEnabled) {
+      closeWebcam();
+      return;
+    }
+    document.getElementById("qr_scanner").style.display = 'block';
+    scannerEnabled = true;
 
-	    if (navigator.getUserMedia) {
-	        navigator.getUserMedia({video: true, audio: false}, setWebcamComplete, setWebcamError);
-	    } else if (navigator.webkitGetUserMedia) {
-	        webkit=true;
-			window.console.log('webkit');
-	        navigator.webkitGetUserMedia({video: true, audio: false}, setWebcamComplete, setWebcamError);
-	    } else if (navigator.mozGetUserMedia) {
-	        moz=true;
-			window.console.log('moz');
-	        navigator.mozGetUserMedia({video: true, audio: false}, setWebcamComplete, setWebcamError);
-	    }
-	}
-	
-	closeWebcam = function() {
-	    document.getElementById("qr_scanner").style.display = 'none';
-		scannerEnabled = false;
-	}
+    if (navigator.getUserMedia) {
+      navigator.getUserMedia({video: true, audio: false}, setWebcamComplete, setWebcamError);
+    } else if (navigator.webkitGetUserMedia) {
+      webkit = true;
+      window.console.log('webkit');
+      navigator.webkitGetUserMedia({video: true, audio: false}, setWebcamComplete, setWebcamError);
+    } else if (navigator.mozGetUserMedia) {
+      moz = true;
+      window.console.log('moz');
+      navigator.mozGetUserMedia({video: true, audio: false}, setWebcamComplete, setWebcamError);
+    }
+  }
 
-	setWebcamComplete = function(stream) {
-		window.console.log('camCapture');
-		//var video = document.getElementById("video");
+  closeWebcam = function () {
+    document.getElementById("qr_scanner").style.display = 'none';
+    scannerEnabled = false;
+  }
 
-	    if (webkit) {
-	        video.src = window.webkitURL.createObjectURL(stream);
-	    } else if (moz) {
-	        video.mozSrcObject = stream;
-	        video.play();
-	    } else {
-	        video.src = stream;
-		}
-		setTimeout(captureToCanvas, 500);
-	}
+  setWebcamComplete = function (stream) {
+    window.console.log('camCapture');
+    //var video = document.getElementById("video");
 
-	setWebcamError = function() {
-		window.console.log('setWebcamError');
-	}
-	
-	captureToCanvas = function() {
-		if (!scannerEnabled) {
-			return;
-		}
-	    try {
-	        gCtx.drawImage(video, 0, 0);
-			try {
-				var personId = qrcode.decode();
-				closeWebcam();
-				window.location.href += '/add_person?uuid=' + personId;
-			} catch(e) {
-				console.log(e);
-				setTimeout(captureToCanvas, 500);
-			};
-	    } catch(e) {
-			console.log(e);
-			setTimeout(captureToCanvas, 500);
-		};
-	}
-	
-	init = function() {
-	    gCanvas = document.getElementById("qr-canvas");
-	    gCtx = gCanvas.getContext("2d");
-	    gCtx.clearRect(0, 0, 800, 600);
-		video = document.getElementById("video");
-	}
-	init();
+    if (webkit) {
+      video.src = window.webkitURL.createObjectURL(stream);
+    } else if (moz) {
+      video.mozSrcObject = stream;
+      video.play();
+    } else {
+      video.src = stream;
+    }
+    setTimeout(captureToCanvas, 500);
+  }
+
+  setWebcamError = function () {
+    window.console.log('setWebcamError');
+  }
+
+  captureToCanvas = function () {
+    if (!scannerEnabled) {
+      return;
+    }
+    try {
+      gCtx.drawImage(video, 0, 0);
+      try {
+        var personId = qrcode.decode();
+        closeWebcam();
+        window.location.href += '/add_person?uuid=' + personId;
+      } catch (e) {
+        console.log(e);
+        setTimeout(captureToCanvas, 500);
+      }
+      ;
+    } catch (e) {
+      console.log(e);
+      setTimeout(captureToCanvas, 500);
+    }
+    ;
+  }
+
+  init = function () {
+    gCanvas = document.getElementById("qr-canvas");
+    gCtx = gCanvas.getContext("2d");
+    gCtx.clearRect(0, 0, 800, 600);
+    video = document.getElementById("video");
+  }
+  init();
 </script>
