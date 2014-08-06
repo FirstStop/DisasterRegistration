@@ -89,7 +89,7 @@ class PeopleController < ApplicationController
           :current_contact_name, :current_contact_phone, :current_contact_email, :current_contact_description,
           :injury_description, :transport, :house_status, :others_at_address, :pet_details,
 
-          :authenticable_attributes => [:username, :password, :password_confirmation]
+          :authenticable_attributes => [:id, :username, :password, :password_confirmation]
       )
     end
 end
