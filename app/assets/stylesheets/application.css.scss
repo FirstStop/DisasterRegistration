@@ -12,13 +12,23 @@
  *
  *= require_self
  */
- 
+
 @import "semantic-ui";
 
 
-#login {
-  position: relative;
-  top: -50px;
+.login {
+  img {
+    float: right;
+  }
+  a {
+    position: relative;
+    top: 25px;
+    float: right;
+  }
+}
+
+.welcome {
+  line-height: 100px;
 }
 
 body,td,th {
@@ -35,8 +45,3 @@ body,td,th {
 .ui.menu {
   margin-top: -7px;
 }
-
-
-
-
-
