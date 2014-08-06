@@ -34,18 +34,22 @@
           <a href='/'><%= image_tag("logo_tagline.png", height:'100px') %></a>
         </div>
 
+
         <div class="right floated column five wide">
-          <% if current_user %>
+          <span class="login">
+          <%= image_tag("people.png", height:'100px') %>
+            <% if current_user %>
               <a href="<%= session_logout_path %>" class="ui blue button">
                 <i class="user icon"></i>Logout
               </a>
-          <% else %>
-          <a href="<%= session_login_path %>" class="ui blue button" id="login">
-            <i class="user icon"></i>Login
-          </a>
-          <% end %>
-          <span><%= image_tag("people.png", height:'100px') %></span>
+            <% else %>
+              <a href="<%= session_login_path %>" class="ui blue button">
+                <i class="user icon"></i>Login
+              </a>
+            <% end %>
+          </span>
         </div>
+        <div class="welcome right floated column three wide"><%= "Welcome: #{current_user.username}" if current_user %></div>
       </div></div>
       <%= image_tag('lne.png', width:'100%') %>
       <div class="ui menu">
