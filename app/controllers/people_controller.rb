@@ -9,11 +9,13 @@ class PeopleController < ApplicationController
   # GET /people.json
   def index
     @people = Person.all
+    log_access "view people: #{@people.map(&:uuid)}"
   end
 
   # GET /people/1
   # GET /people/1.json
   def show
+    log_access "view person details: #{@person.uuid}"
   end
 
   # GET /people/1/qr
@@ -78,6 +80,11 @@ class PeopleController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_person
       @person = Person.find(params[:id])
+    end
+
+    def log_access(action)
+      username = current_user ? current_user.username : 'ANONYMOUS'
+        logger.info "User: <#{username}>; Action: <#{action}>"
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

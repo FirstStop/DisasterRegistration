@@ -37,8 +37,7 @@
         <div class="right floated column five wide">
           <% if current_user %>
               <a href="<%= session_logout_path %>" class="ui blue button">
-                <i class="user icon"></i>
-                Logout
+                <i class="user icon"></i>Logout
               </a>
           <% else %>
           <a href="<%= session_login_path %>" class="ui blue button" id="login">
@@ -63,7 +62,7 @@
         <a class="right floated item" href="#">About</a>
       </div>
     </div>
-    <%= yield %> 
+    <%= yield %>
   </div></div></div>
 
 </body>
