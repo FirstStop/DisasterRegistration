@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'wizard/index'
+
   resources :service_providers do
     member do
       get 'add_person'
