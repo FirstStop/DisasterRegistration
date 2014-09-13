@@ -27,7 +27,6 @@ class PeopleController < ApplicationController
   # GET /people/new
   def new
     @person = Person.new
-    @person.authenticable = Authenticable.new
   end
 
   # GET /people/1/edit
@@ -37,10 +36,7 @@ class PeopleController < ApplicationController
   # POST /people
   # POST /people.json
   def create
-    @person = Person.new
-    @person.authenticable = Authenticable.new
-    @person.update(person_params)
-
+    @person = Person.new(person_params)
     respond_to do |format|
       if @person.save
         format.html { redirect_to @person, notice: 'Person was successfully created.' }
@@ -56,7 +52,7 @@ class PeopleController < ApplicationController
   # PATCH/PUT /people/1.json
   def update
     respond_to do |format|
-      if @person.update(person_params)
+      if @person.update_attributes(person_params)
         format.html { redirect_to @person, notice: 'Person was successfully updated.' }
         format.json { render :show, status: :ok, location: @person }
       else
@@ -96,7 +92,7 @@ class PeopleController < ApplicationController
           :current_contact_name, :current_contact_phone, :current_contact_email, :current_contact_description,
           :injury_description, :transport, :house_status, :others_at_address, :pet_details,
 
-          :authenticable_attributes => [:id, :username, :password, :password_confirmation]
+          :authenticable => [:id, :username, :password, :password_confirmation]
       )
     end
 end

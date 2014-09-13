@@ -118,7 +118,7 @@
     </div>
   </div>
 
-    <%= f.fields_for :authenticable do |builder| %>
+    <%= f.fields_for :authenticable, @person.authenticable do |builder| %>
         <%= render "session/form", :f => builder %>
     <% end %>
 

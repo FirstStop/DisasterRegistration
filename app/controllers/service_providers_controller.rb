@@ -27,7 +27,6 @@ class ServiceProvidersController < ApplicationController
   # GET /service_providers/new
   def new
     @service_provider = ServiceProvider.new
-    @service_provider.authenticable = Authenticable.new
   end
 
   # GET /service_providers/1/edit
@@ -37,11 +36,7 @@ class ServiceProvidersController < ApplicationController
   # POST /service_providers
   # POST /service_providers.json
   def create
-    @service_provider = ServiceProvider.new
-    @service_provider.authenticable = Authenticable.new
-    @service_provider.update(service_provider_params)
-    puts service_provider_params
-
+    @service_provider = ServiceProvider.new(service_provider_params)
     respond_to do |format|
       if @service_provider.save
         format.html { redirect_to @service_provider, notice: 'Service provider was successfully created.' }
@@ -57,7 +52,7 @@ class ServiceProvidersController < ApplicationController
   # PATCH/PUT /service_providers/1.json
   def update
     respond_to do |format|
-      if @service_provider.update(service_provider_params)
+      if @service_provider.update_attributes(service_provider_params)
         format.html { redirect_to @service_provider, notice: 'Service provider was successfully updated.' }
         format.json { render :show, status: :ok, location: @service_provider }
       else
@@ -81,10 +76,11 @@ class ServiceProvidersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_service_provider
       @service_provider = ServiceProvider.find(params[:id])
+      puts "From mongo #{@service_provider.to_mongo}"
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def service_provider_params
-      params.require(:service_provider).permit(:name, :services_supplies, :authenticable_attributes => [:id, :username, :password, :password_confirmation])
+      params.require(:service_provider).permit(:name, :services_supplies, :authenticable => [:id, :username, :password, :password_confirmation])
     end
 end

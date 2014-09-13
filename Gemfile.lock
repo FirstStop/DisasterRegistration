@@ -29,6 +29,9 @@ GEM
       tzinfo (~> 1.1)
     arel (5.0.1.20140414130214)
     bcrypt (3.1.7)
+    bson (1.10.2)
+    bson_ext (1.10.2)
+      bson (~> 1.10.2)
     builder (3.2.2)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -55,8 +58,16 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.25.1)
     minitest (5.3.4)
+    mongo (1.10.2)
+      bson (= 1.10.2)
+    mongo_mapper (0.13.0)
+      activemodel (>= 3.0.0)
+      activesupport (>= 3.0)
+      mongo (~> 1.8)
+      plucky (~> 0.6.5)
     multi_json (1.10.1)
-    pg (0.17.1)
+    plucky (0.6.6)
+      mongo (~> 1.5)
     polyglot (0.3.5)
     rack (1.5.2)
     rack-test (0.6.2)
@@ -126,11 +137,13 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activemodel
   bcrypt
+  bson_ext
   coffee-rails (~> 4.0.0)
   jbuilder (~> 2.0)
   jquery-rails
-  pg
+  mongo_mapper
   rails (= 4.1.1)
   rails_12factor
   sass-rails (~> 4.0.3)

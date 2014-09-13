@@ -1,6 +1,13 @@
-class ServiceProvider < ActiveRecord::Base
-  has_and_belongs_to_many :clients, :class_name => "Person", :join_table => "people_providers"
-  
-  has_one :authenticable, as: :authenticable_object, autosave: true
-  accepts_nested_attributes_for :authenticable;
+class ServiceProvider
+    include MongoMapper::Document
+    
+    key :name, String
+    key :services_supplies, String
+    key :clients, Array
+   
+   many :persons, :in => :clients
+    one :authenticable, :class_name => "Authenticable", :as => :authenticable_object
+    
+    timestamps!
+
 end

@@ -1,6 +1,10 @@
-class Authenticable < ActiveRecord::Base
-  validates :username, :presence => true, :uniqueness => true
-  #validates :password, :confirmation => true
+class Authenticable
+    include MongoMapper::Document
+
+    key :username, String, :required => true, :unique => true
+    key :encrypted_password, String
+    key :salt, String
+  
 
   before_save :encrypt_password
   after_save :clear_password
