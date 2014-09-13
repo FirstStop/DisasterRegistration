@@ -44,6 +44,9 @@ GEM
     erubis (2.7.0)
     eventmachine (1.0.3)
     execjs (2.1.0)
+    exodus (1.1.7)
+      bson_ext
+      mongo_mapper
     hike (1.2.3)
     i18n (0.6.9)
     jbuilder (2.0.7)
@@ -141,6 +144,7 @@ DEPENDENCIES
   bcrypt
   bson_ext
   coffee-rails (~> 4.0.0)
+  exodus
   jbuilder (~> 2.0)
   jquery-rails
   mongo_mapper

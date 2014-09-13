@@ -8,6 +8,7 @@ gem 'activemodel'
 # MongoDB
 gem 'mongo_mapper'
 gem 'bson_ext'
+gem 'exodus'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'

@@ -80,4 +80,5 @@ Rails.application.configure do
 
   # Configure mongo_mapper gem
   config.gem "mongo_mapper"
+  config.gem "exodus"
 end

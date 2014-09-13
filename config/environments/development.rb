@@ -34,5 +34,13 @@ Rails.application.configure do
   
   # Configure mongo_mapper gem
   config.gem "mongo_mapper"
-
+  config.gem "exodus"
+ 
+ Exodus.configure do |config|
+     config.db = MongoMapper.database
+     config.connection = MongoMapper.connection
+     config.config_file = File.dirname(__FILE__) + '/../mongo.yml'
+     config.migrations_directory = File.dirname(__FILE__) + '/../../db/mongo_migrate'
+ end
 end
+

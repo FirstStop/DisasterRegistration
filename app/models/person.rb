@@ -33,11 +33,11 @@ class Person
   end
 
   def accessible_for_user authenticable
-    if authenticable.try(:authenticable_object).nil?
+    if authenticable.try(:authenticable).nil?
       true
-    elsif authenticable.authenticable_object is_a? Person.class
-      authenticable.authenticable_object == self
-    elsif authenticable.authenticable_object is_a? ServiceProvider.class
+    elsif authenticable.authenticable is_a? Person.class
+      authenticable.authenticable == self
+    elsif authenticable.authenticable is_a? ServiceProvider.class
       authenticable.authenticable_object.clients.include? self
     end
   end
