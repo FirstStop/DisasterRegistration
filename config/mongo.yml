@@ -22,3 +22,7 @@ production:
   database: firststop
   username: <%= ENV['MONGO_USERNAME'] %>
   password: <%= ENV['MONGO_PASSWORD'] %>
+
+migration:
+  <<: *defaults
+
