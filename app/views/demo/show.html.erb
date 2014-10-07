@@ -1,0 +1,208 @@
+<p id="notice"><%= notice %></p>
+<div id="qr_scanner">
+  <video id="video" style="height:200px;" autoplay></video>
+  <canvas id="qr-canvas" width="800" height="600" style="display:none;width:800px;height:600px;"></canvas>
+</div>
+
+<% if @person %>
+<div class="ui blue segment">
+  <h3>Basic Details</h3>
+  <div class="ui three column grid">
+  <div class="row">
+      <div class="column">
+        <small>First Name</small>
+        <div class="details"><%=  @person.first_name %></div>
+      </div>
+      <div class="column">
+        <small>Last Name</small>
+        <div class="details"><%=  @person.last_name %></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column">
+        <small>Dob</small>
+        <div class="details"><%=  @person.dob %></div>
+      </div>
+      <div class="column">
+        <small>Sex</small>
+        <div class="details"><%=  @person.sex %></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column">
+        <small>Has Privacy Concerns</small>
+        <div class="details"><%= @person.has_privacy_concerns ? 'yes' : 'no' %></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column"></div>
+      <div class="column">
+        <small>Mobile</small>
+        <div class="details"><%=  @person.mobile %></div>
+      </div>
+      <div class="column">
+        <small>Email</small>
+        <div class="details"><%=  @person.email %></div>
+      </div>
+      <div class="column">
+        <small>Address</small>
+        <div class="details"><%=  @person.address %></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column"></div>
+      <div class="column">
+        <small>Suburb</small>
+        <div class="details"><%=  @person.suburb %></div>
+      </div>
+      <div class="column">
+        <small>State</small>
+        <div class="details"><%=  @person.state %></div>
+      </div>
+      <div class="column">
+        <small>Postcode</small>
+        <div class="details"><%=  @person.postcode %></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="ui red segment">
+  <h3>Current Contact</h3>
+  <div class="ui three column grid">
+    <div class="row">
+      <div class="column">
+        <small>Name</small>
+        <div class="details"><%=  @person.current_contact_name %></div>
+      </div>
+      <div class="column">
+        <small>Phone</small>
+        <div class="details"><%=  @person.current_contact_phone %></div>
+      </div>
+      <div class="column">
+        <small>Email</small>
+        <div class="details"><%=  @person.current_contact_email %></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column three wide">
+        <small>Description</small>
+        <div class="details"><%=  @person.current_contact_description %></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ui green segment">
+  <h3>Status</h3>
+  <div class="ui three column grid">
+    <div class="row">
+      <div class="column">status</div>
+      <div class="column two wide">
+        <small>Injury Description</small>
+        <div class="details"><%=  @person.injury_description %></div>
+      </div>
+      <div class="column">
+        <small>Transport</small>
+        <div class="details"><%=  @person.transport %></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column"></div>
+      <div class="column">
+        <small>House Status</small>
+        <div class="details"><%=  @person.house_status %></div>
+      </div>
+      <div class="column">
+        <small>Others at Address</small>
+        <div class="details"><%=  @person.others_at_address %></div>
+      </div>
+      <div class="column">
+        <small>Pet Details</small>
+        <div class="details"><%=  @person.pet_details %></div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<% end %>
+
+<script type="text/javascript">
+  var scannerEnabled = false;
+  setWebcam = function () {
+    if (scannerEnabled) {
+      closeWebcam();
+      return;
+    }
+    document.getElementById("qr_scanner").style.display = 'block';
+    scannerEnabled = true;
+
+    if (navigator.getUserMedia) {
+      navigator.getUserMedia({video: true, audio: false}, setWebcamComplete, setWebcamError);
+    } else if (navigator.webkitGetUserMedia) {
+      webkit = true;
+      window.console.log('webkit');
+      navigator.webkitGetUserMedia({video: true, audio: false}, setWebcamComplete, setWebcamError);
+    } else if (navigator.mozGetUserMedia) {
+      moz = true;
+      window.console.log('moz');
+      navigator.mozGetUserMedia({video: true, audio: false}, setWebcamComplete, setWebcamError);
+    }
+  }
+
+  closeWebcam = function () {
+    document.getElementById("qr_scanner").style.display = 'none';
+    scannerEnabled = false;
+  }
+
+  setWebcamComplete = function (stream) {
+    window.console.log('camCapture');
+    //var video = document.getElementById("video");
+
+    if (webkit) {
+      video.src = window.webkitURL.createObjectURL(stream);
+    } else if (moz) {
+      video.mozSrcObject = stream;
+      video.play();
+    } else {
+      video.src = stream;
+    }
+    setTimeout(captureToCanvas, 500);
+  }
+
+  setWebcamError = function () {
+    window.console.log('setWebcamError');
+  }
+
+  captureToCanvas = function () {
+    if (!scannerEnabled) {
+      return;
+    }
+    try {
+      gCtx.drawImage(video, 0, 0);
+      try {
+        var personId = qrcode.decode();
+        closeWebcam();
+        window.location.href = '/demo?uuid=' + personId;
+      } catch (e) {
+        console.log(e);
+        setTimeout(captureToCanvas, 500);
+      }
+      ;
+    } catch (e) {
+      console.log(e);
+      setTimeout(captureToCanvas, 500);
+    }
+    ;
+  }
+
+  init = function () {
+    gCanvas = document.getElementById("qr-canvas");
+    gCtx = gCanvas.getContext("2d");
+    gCtx.clearRect(0, 0, 800, 600);
+    video = document.getElementById("video");
+  }
+  init();
+  javascript:setWebcam();
+</script>

@@ -9,10 +9,12 @@ Rails.application.routes.draw do
   post 'session/login' => 'session#do_login'
   get 'session/logout'
 
+  get 'demo' => 'demo#show'
+
   resources :people do
     member do
       get 'qr'
-    end    
+    end
   end
 
   root :to => 'welcome#index'
