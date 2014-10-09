@@ -13,4 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require semantic-ui
+//= require jquery-smooth-scroll
+
+
 //= require_tree .
