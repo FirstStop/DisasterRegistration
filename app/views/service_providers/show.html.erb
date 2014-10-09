@@ -46,7 +46,7 @@
     </thead>
 
     <tbody>
-    <% @service_provider.clients.each do |person| %>
+    <% @service_provider.person.each do |person| %>
       <tr>
         <td><%= link_to person.name, person %></td>
         <td><%= person.dob %></td>
