@@ -3,6 +3,7 @@
   <div class="ui form" wizard-node="wizard.welcome">
     <h2>Welcome to FirstStop</h2>
     <div>What would you like to do?</div>
+    <button class="ui button" wizard-next="wizard.basic_information">Get started</button>
   </div>
 
   <div class="ui form" wizard-node="wizard.basic_information">
@@ -36,6 +37,8 @@
         <label>Birthday</label>
         <input type="text" placeholder="xx/xx/xxxx">
       </div>
+
+      <button class="ui button" wizard-next="wizard.happening">Next</button>
     </form>
   </div>
 
@@ -49,6 +52,8 @@
       <br />
 
       <textarea placeholder="Anything else?" width="100%"></textarea>
+
+      <button class="ui button" wizard-next="wizard.qr_code">Set me up</button>
     </form>
   </div>
 
@@ -66,6 +71,8 @@
       consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
       cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
       proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+
+    <button class="ui button" wizard-next="wizard.red_cross">Next</button>
   </div>
 
 
@@ -80,6 +87,8 @@
       <li>Lorem </li>
       <li>Lorem </li>
     </ul>
+
+    <button class="ui button" wizard-next="wizard.police">Next</button>
   </div>
 
   <div wizard-node="wizard.police">
@@ -95,6 +104,8 @@
       <li>Lorem </li>
       <li>Lorem </li>
     </ul>
+
+    <button class="ui button" wizard-next="wizard.ato">Next</button>
   </div>
 
   <div wizard-node="wizard.ato">
