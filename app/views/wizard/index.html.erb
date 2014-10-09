@@ -1,21 +1,46 @@
-<div class="wizard" wizard>
+<div class="wizard" wizard="wizard">
 
-  <div wizard-node>
+  <div class="ui form" wizard-node="wizard.welcome">
     <h2>Welcome to FirstStop</h2>
     <div>What would you like to do?</div>
   </div>
 
-  <div wizard-node>
+  <div class="ui form" wizard-node="wizard.basic_information">
     <h2>Who are you?</h2>
     <form>
-      <input type="text" placeholder="John Citizen">
-      <input type="text" placeholder="20 Blue Mountains Rd">
-      <input type="text" placeholder="2000 Sydney">
+      <div class="two fields">
+        <div class="field">
+          <label>First Name</label>
+          <input placeholder="First Name" type="text">
+        </div>
+        <div class="field">
+          <label>Last Name</label>
+          <input placeholder="Last Name" type="text">
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Gender</label>
+        <div class="ui fluid selection dropdown">
+          <div class="text">Select</div>
+          <i class="dropdown icon"></i>
+          <input type="hidden" name="gender">
+          <div class="menu">
+            <div class="item" data-value="male">Male</div>
+            <div class="item" data-value="female">Female</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="date field">
+        <label>Birthday</label>
+        <input type="text" placeholder="xx/xx/xxxx">
+      </div>
     </form>
   </div>
 
 
-  <div wizard-node>
+  <div class="ui form" wizard-node="wizard.happening">
     <h2>What happend?</h2>
     <form>
       <input type="checkbox" id="wh1"/> <label for="wh1">My house burned down</label>
@@ -29,7 +54,7 @@
 
 
 
-  <div wizard-node>
+  <div wizard-node="wizard.qr_code">
     <h2>Here it is; your super-duber special personal QR-Code.</h2>
     <div>Enjoy!</div>
     <br>
@@ -44,7 +69,7 @@
   </div>
 
 
-  <div wizard-node>
+  <div wizard-node="wizard.red_cross">
     <h2>Red Cross Australia</h2>
     <img src="http://www.redcross.org.au/common/images/backgrounds/ARC_100Years-logo.png" width="40%" />
     <br><br>
@@ -57,7 +82,7 @@
     </ul>
   </div>
 
-  <div wizard-node>
+  <div wizard-node="wizard.police">
     <h2>New South Wales Police Service</h2>
     <img src="http://www.mv8.com.au/wp-content/uploads/2013/09/plogolge.gif" width="40%" />
     <br><br>
@@ -72,7 +97,7 @@
     </ul>
   </div>
 
-  <div wizard-node>
+  <div wizard-node="wizard.ato">
     <small>Have you lodged your tax return? If not, ask for an extension!</small>
     <h2>Taxation Office</h2>
     <img src="https://www.ato.gov.au/uploadedImages/Content/Images/logo-ato.png" width="40%" />

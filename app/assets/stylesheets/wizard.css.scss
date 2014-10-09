@@ -2,11 +2,27 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.wizard {
-  @extend .ui.page;
-  @extend .ui.page.grid;
+@mixin wizard-node {
+  border: 1px dotted lightgray;
+  padding: 30px;
+  margin-bottom: 60px;
+}
 
-  div {
-    @extend .ui.column;
+@mixin transparent-background {
+  background-color: rgba(200, 200, 200, 0.8);
+}
+
+.wizard {
+  div[wizard-node] {
+    @include wizard-node;
+    @include transparent-background;
   }
+}
+
+.no-print {
+  display: none;
+}
+
+body {
+  background-image: asset_url('blue-mountains-valley.jpg');
 }
