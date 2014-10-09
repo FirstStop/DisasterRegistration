@@ -5,14 +5,30 @@
 @mixin wizard-node {
   border: 1px dotted lightgray;
   padding: 30px;
-  margin-bottom: 60px;
+  margin: 45px 0;
 }
 
 @mixin transparent-background {
-  background-color: rgba(200, 200, 200, 0.8);
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+@mixin full-image-background($url) {
+  background: asset_url($url) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .wizard {
+  body {
+    @include full-image-background('blue-mountains-valley.jpg')
+  }
+
+  .menu {
+    display: none;
+  }
+
   div[wizard] {
     div[wizard-node] {
       @include wizard-node;
@@ -20,15 +36,5 @@
     }
   }
 
-  .no-print {
-    display: none;
-  }
 
-  body {
-    background: asset_url('blue-mountains-valley.jpg') no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-  }
 }

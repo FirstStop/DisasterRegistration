@@ -11,7 +11,8 @@ showNextStep = (name) ->
 
   setTimeout ->
     $.smoothScroll({
-      scrollTarget: next_step
+      scrollTarget: next_step,
+      offset: -30
     })
 
 getData = ->
