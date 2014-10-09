@@ -35,7 +35,7 @@ gem 'sqlite3', :group => [:development, :test]
 
 gem 'bcrypt'
 
-gem 'jquery-smooth-scroll-rails', :git => 'git@github.com:gretel/jquery-smooth-scroll-rails.git'
+gem 'jquery-smooth-scroll-rails'
 
  #database
 
