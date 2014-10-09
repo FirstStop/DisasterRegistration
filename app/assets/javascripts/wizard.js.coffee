@@ -24,8 +24,16 @@ getData = ->
 
 submitForm = (nextStep) ->
   data = person: getData()
-  jQuery.post '/people.json', data, ->
+  $.post '/people.json', data, (response) ->
+    updateQRCode(response.id)
     showNextStep(nextStep)
+
+updateQRCode = (id) ->
+  qrcode = new QRCode(document.getElementById("wizard-qr-code"), {
+    width : 200,
+    height : 200
+  });
+  qrcode.makeCode(id);
 
 $(document).ready ->
   hideSteps()
