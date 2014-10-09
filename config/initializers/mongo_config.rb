@@ -1,1 +1,1 @@
-MongoMapper.database="firststop-#{Rails.env}"
+MongoMapper.database="firststop-#{Rails.env}" unless Rails.env == 'production'
