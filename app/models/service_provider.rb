@@ -5,7 +5,7 @@ class ServiceProvider
     key :services_supplies, String
     key :clients, Array
    
-   many :persons, :in => :clients
+   many :person, :in => :clients
     one :authenticable, :class_name => "Authenticable", :as => :authenticable_object
     
     timestamps!
