@@ -21,10 +21,10 @@ getData = ->
     result[input.attr 'name'] = input.val() if input.attr 'name'
   result
 
-submitForm = ->
+submitForm = (nextStep) ->
   data = person: getData()
   jQuery.post '/people.json', data, ->
-    showNextStep()
+    showNextStep(nextStep)
 
 $(document).ready ->
   hideSteps()
@@ -35,6 +35,6 @@ $(document).ready ->
     false
 
   $('input[wizard-submit],button[wizard-submit]').click ->
-    name = $(this).attr('wizard-next')
+    name = $(this).attr('wizard-submit')
     submitForm(name)
     false

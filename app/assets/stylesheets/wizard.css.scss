@@ -13,16 +13,22 @@
 }
 
 .wizard {
-  div[wizard-node] {
-    @include wizard-node;
-    @include transparent-background;
+  div[wizard] {
+    div[wizard-node] {
+      @include wizard-node;
+      @include transparent-background;
+    }
   }
-}
 
-.no-print {
-  display: none;
-}
+  .no-print {
+    display: none;
+  }
 
-body {
-  background-image: asset_url('blue-mountains-valley.jpg');
+  body {
+    background: asset_url('blue-mountains-valley.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
 }
