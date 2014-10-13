@@ -1,24 +1,20 @@
-.scanner {
-  float: left;
-  margin-right: 20px;
-}
+@import "mixins";
 
-#video {
-  float: right;
-  border: #ccc solid 10px;
-  border-radius: 10px;
-  padding: 5px;
-}
+.demo {
+  body {
+    @include full-image-background('blue-mountains-valley.jpg')
+  }
 
-@mixin full-image-background($url) {
-  background: asset_url($url) no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
+  .scanner {
+    float: left;
+    margin-right: 20px;
+  }
 
-
-body {
-  @include full-image-background('blue-mountains-valley.jpg')
+  #video {
+    float: right;
+    border: #ccc solid 10px;
+    border-radius: 10px;
+    padding: 5px;
+    position: relative;
+  }
 }
