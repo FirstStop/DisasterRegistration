@@ -1,11 +1,15 @@
-<p id="notice"><%= notice %></p>
-<div id="qr_scanner">
-  <video id="video" style="height:200px;" autoplay></video>
-  <canvas id="qr-canvas" width="800" height="600" style="display:none;width:800px;height:600px;"></canvas>
+<div>
+  <%= image_tag("scanner.png", width:"146", height:"207", alt:"", class:"scanner") %>
+  <div id="qr_scanner">
+    <video id="video" style="height:200px;" autoplay></video>
+    <canvas id="qr-canvas" width="800" height="600" style="display:none;width:800px;height:600px;"></canvas>
+  </div>
 </div>
 
+<div style="clear:both;"> </div>
+
 <% if @person %>
-<div class="ui blue segment">
+<div class="ui blue segment" id="person" data-uuid="<%= @person.uuid %>">
   <h3>Basic Details</h3>
   <div class="ui three column grid">
   <div class="row">
@@ -66,66 +70,6 @@
     </div>
   </div>
 </div>
-
-
-<div class="ui red segment">
-  <h3>Current Contact</h3>
-  <div class="ui three column grid">
-    <div class="row">
-      <div class="column">
-        <small>Name</small>
-        <div class="details"><%=  @person.current_contact_name %></div>
-      </div>
-      <div class="column">
-        <small>Phone</small>
-        <div class="details"><%=  @person.current_contact_phone %></div>
-      </div>
-      <div class="column">
-        <small>Email</small>
-        <div class="details"><%=  @person.current_contact_email %></div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="column three wide">
-        <small>Description</small>
-        <div class="details"><%=  @person.current_contact_description %></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="ui green segment">
-  <h3>Status</h3>
-  <div class="ui three column grid">
-    <div class="row">
-      <div class="column">status</div>
-      <div class="column two wide">
-        <small>Injury Description</small>
-        <div class="details"><%=  @person.injury_description %></div>
-      </div>
-      <div class="column">
-        <small>Transport</small>
-        <div class="details"><%=  @person.transport %></div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="column"></div>
-      <div class="column">
-        <small>House Status</small>
-        <div class="details"><%=  @person.house_status %></div>
-      </div>
-      <div class="column">
-        <small>Others at Address</small>
-        <div class="details"><%=  @person.others_at_address %></div>
-      </div>
-      <div class="column">
-        <small>Pet Details</small>
-        <div class="details"><%=  @person.pet_details %></div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
 <% end %>
 
 <script type="text/javascript">
@@ -181,20 +125,15 @@
     }
     try {
       gCtx.drawImage(video, 0, 0);
-      try {
-        var personId = qrcode.decode();
+      var personId = qrcode.decode();
+      if( $('#person').data('uuid') != personId ) {
         closeWebcam();
         window.location.href = '/demo?uuid=' + personId;
-      } catch (e) {
-        console.log(e);
-        setTimeout(captureToCanvas, 500);
       }
-      ;
     } catch (e) {
       console.log(e);
-      setTimeout(captureToCanvas, 500);
     }
-    ;
+    setTimeout(captureToCanvas, 500);
   }
 
   init = function () {

@@ -1,0 +1,20 @@
+@import "mixins";
+
+.demo {
+  body {
+    @include full-image-background('blue-mountains-valley.jpg')
+  }
+
+  .scanner {
+    float: left;
+    margin-right: 20px;
+  }
+
+  #video {
+    float: right;
+    border: #ccc solid 10px;
+    border-radius: 10px;
+    padding: 5px;
+    position: relative;
+  }
+}

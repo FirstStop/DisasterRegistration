@@ -1,0 +1,18 @@
+
+@mixin transparent-background {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+@mixin full-image-background($url) {
+  background: asset_url($url) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+@mixin wizard-node {
+  border: 1px dotted lightgray;
+  padding: 30px;
+  margin: 45px 0;
+}
