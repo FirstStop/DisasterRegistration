@@ -17,3 +17,7 @@
 
 
 //= require_tree .
+
+function extractUUIDFromQRCode(str) {
+  return str.replace(/.*uuid=/, '');
+}

@@ -125,7 +125,7 @@
     }
     try {
       gCtx.drawImage(video, 0, 0);
-      var personId = qrcode.decode();
+      var personId = extractUUIDFromQRCode(qrcode.decode())
       if( $('#person').data('uuid') != personId ) {
         closeWebcam();
         window.location.href = '/demo?uuid=' + personId;
