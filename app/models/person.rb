@@ -22,6 +22,7 @@ class Person
     key :postcode, String
     key :others_at_address, String
     key :pet_details, String
+    key :current_situation, String
     key :uuid, String
     
     before_create :create_uuid
@@ -45,7 +46,7 @@ class Person
 
   private
   def create_uuid
-    self.uuid = SecureRandom.uuid
+    self.uuid = SecureRandom.uuid unless self.uuid
   end
   
 end

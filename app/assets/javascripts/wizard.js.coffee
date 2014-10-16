@@ -17,7 +17,7 @@ showNextStep = (name) ->
 
 getData = ->
   result = {}
-  for raw_input in $('input,select')
+  for raw_input in $('input,select,textarea')
     input = $(raw_input)
     result[input.attr 'name'] = input.val() if input.attr 'name'
   result

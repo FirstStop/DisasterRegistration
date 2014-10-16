@@ -111,7 +111,7 @@
     try {
       gCtx.drawImage(video, 0, 0);
       try {
-        var personId = qrcode.decode();
+        var personId = extractUUIDFromQRCode(qrcode.decode());
         closeWebcam();
         window.location.href += '/add_person?uuid=' + personId;
       } catch (e) {
