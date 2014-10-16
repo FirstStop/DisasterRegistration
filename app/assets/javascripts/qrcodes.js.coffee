@@ -1,6 +1,6 @@
 $ ->
   $qr_scanner = $('#qr_scanner')
-  return unless $qr_scanner
+  return if $qr_scanner.length == 0
 
   scannerEnabled = $qr_scanner.data('enabled')
   webkit = false
