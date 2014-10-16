@@ -13,12 +13,8 @@
     div[wizard-node] {
       @include wizard-node;
       @include transparent-background;
+      @include no-page-break-during-printing;
     }
   }
-
-  textarea {
-    margin-bottom: 10px;
-  }
-
 
 }

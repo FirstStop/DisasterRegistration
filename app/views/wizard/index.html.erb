@@ -6,12 +6,13 @@
     <h2>Your FirstStop</h2>
     <p>FirstStop enables you to easily share your details with those who can help you.</p>
     <p>Registering provides you with a personalised QR Code that allows you to share your details only with those you want to.</p>
-    <button class="ui button" wizard-next="wizard.basic_information">Register me</button>
+    <button class="ui button" wizard-next="wizard.basic_information">Start my registration</button>
   </div>
 
   <div class="ui form" wizard-node="wizard.basic_information">
-    <h2>Who are you?</h2>
     <form>
+      <h2>Who are you?</h2>
+
       <div class="two fields">
         <div class="field">
           <label>First Name</label>
@@ -43,12 +44,13 @@
   </div>
 
   <div class="ui form" wizard-node="wizard.address">
-    <h2>What's your current home address?</h2>
     <form>
-        <div class="field">
-          <label>Address</label>
-          <input name="address" placeholder="Address" type="text">
-        </div>
+      <h2>What's your current home address?</h2>
+
+      <div class="field">
+        <label>Address</label>
+        <input name="address" placeholder="Address" type="text">
+      </div>
 
       <div class="three fields">
         <div class="field">
@@ -72,45 +74,56 @@
   </div>
 
   <div class="ui form" wizard-node="wizard.contact">
-    <h2>How can we contact you?</h2>
     <form>
-        <div class="field">
-          <label>Email</label>
-          <input name="email" placeholder="Email" type="text">
-        </div>
+      <h2>How can we contact you?</h2>
 
-        <div class="field">
-          <label>Phone</label>
-          <input name="mobile" placeholder="Phone" type="text">
-        </div>
+      <div class="field">
+        <label>Email</label>
+        <input name="email" placeholder="Email" type="text">
+      </div>
+
+      <div class="field">
+        <label>Phone</label>
+        <input name="mobile" placeholder="Phone" type="text">
+      </div>
 
       <button class="ui button" wizard-next="wizard.pets">Next</button>
     </form>
   </div>
 
   <div class="ui form" wizard-node="wizard.pets">
-    <h2>Do you have pets?</h2>
     <form>
-      <button class="ui button" wizard-next="wizard.pets2">yes</button>
-      <button class="ui button" wizard-next="wizard.what_happend">No</button>
+      <h2>Do you have pets?</h2>
+
+      <div class="ui buttons">
+        <button class="ui button" wizard-next="wizard.pets2">yes</button>
+        <div class="or"></div>
+        <button class="ui button" wizard-next="wizard.what_happend">No</button>
+      </div>
     </form>
   </div>
 
   <div class="ui form" wizard-node="wizard.pets2">
-    <h2>Tell us about your pets</h2>
     <form>
-      <textarea name="pet_details" placeholder="e.g. names, dog or cat" width="100%"></textarea>
+      <h2>Tell us about your pets</h2>
+
+      <div class="field">
+        <textarea name="pet_details" placeholder="e.g. names, dog or cat" width="100%"></textarea>
+      </div>
 
       <button class="ui button" wizard-next="wizard.what_happend">Next</button>
     </form>
   </div>
 
   <div class="ui form" wizard-node="wizard.what_happend">
-    <h2>Tell us your story</h2>
     <form>
-      <textarea name="current_situation" placeholder="Can you share your story and how you have been affected." width="100%"></textarea>
+      <h2>Tell us your story</h2>
 
-      <button class="ui button" wizard-submit="wizard.qr_code">Submit</button>
+      <div class="field">
+        <textarea name="current_situation" placeholder="Can you share your story and how you have been affected." width="100%"></textarea>
+      </div>
+
+      <button class="ui positive button" wizard-submit="wizard.qr_code">Register me</button>
     </form>
   </div>
 

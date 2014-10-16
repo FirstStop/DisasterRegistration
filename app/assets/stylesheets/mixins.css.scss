@@ -16,3 +16,7 @@
   padding: 30px;
   margin: 45px 0;
 }
+
+@mixin no-page-break-during-printing {
+  page-break-inside:avoid;
+}
