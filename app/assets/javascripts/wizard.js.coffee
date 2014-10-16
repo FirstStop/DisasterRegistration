@@ -28,6 +28,10 @@ submitForm = (nextStep) ->
     updateQRCode(response.id)
     showNextStep(nextStep)
 
+makeFormReadOnly = ->
+  $('input,select,textarea').attr('readonly', 'readonly');
+
+
 updateQRCode = (id) ->
   qrcode = new QRCode(document.getElementById("wizard-qr-code"), {
     width : 200,
@@ -46,4 +50,5 @@ $(document).ready ->
   $('input[wizard-submit],button[wizard-submit]').click ->
     name = $(this).attr('wizard-submit')
     submitForm(name)
+    makeFormReadOnly()
     false
