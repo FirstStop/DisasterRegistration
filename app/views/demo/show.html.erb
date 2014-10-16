@@ -1,16 +1,12 @@
+<div id="demo" class="spacer" data-delay="6000"></div>
+
 <div>
-  <%= image_tag("scanner.png", width:"146", height:"207", alt:"", class:"scanner") %>
-  <div id="qr_scanner">
-    <video id="video" style="height:200px;" autoplay></video>
-    <canvas id="qr-canvas" width="800" height="600" style="display:none;width:800px;height:600px;"></canvas>
-  </div>
+  <div class="ui huge inverted center aligned icon header"><%= image_tag("firststop_logo.png", alt:"") %></div
 </div>
 
 <div style="clear:both;"> </div>
 
-<% if @person %>
 <div class="ui blue segment" id="person" data-uuid="<%= @person.uuid %>">
-  <h3>Basic Details</h3>
   <div class="ui three column grid">
   <div class="row">
       <div class="column">
@@ -24,24 +20,18 @@
     </div>
     <div class="row">
       <div class="column">
-        <small>Dob</small>
+        <small>Birthday</small>
         <div class="details"><%=  @person.dob %></div>
       </div>
       <div class="column">
-        <small>Sex</small>
+        <small>Gender</small>
         <div class="details"><%=  @person.sex %></div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="column">
-        <small>Has Privacy Concerns</small>
-        <div class="details"><%= @person.has_privacy_concerns ? 'yes' : 'no' %></div>
       </div>
     </div>
     <div class="row">
       <div class="column"></div>
       <div class="column">
-        <small>Mobile</small>
+        <small>Phone</small>
         <div class="details"><%=  @person.mobile %></div>
       </div>
       <div class="column">
@@ -67,81 +57,20 @@
         <small>Postcode</small>
         <div class="details"><%=  @person.postcode %></div>
       </div>
+      <div class="row">
+        <div class="column"></div>
+        <div class="column">
+          <small>Pet Details</small>
+          <div class="details"><%=  @person.pet_details %></div>
+        </div>
+        <div class="column">
+          <small>State</small>
+          <div class="details"><%=  @person.state %></div>
+        </div>
+        <div class="column">
+          <small>Postcode</small>
+          <div class="details"><%=  @person.postcode %></div>
+        </div>
     </div>
   </div>
 </div>
-<% end %>
-
-<script type="text/javascript">
-  var scannerEnabled = false;
-  setWebcam = function () {
-    if (scannerEnabled) {
-      closeWebcam();
-      return;
-    }
-    document.getElementById("qr_scanner").style.display = 'block';
-    scannerEnabled = true;
-
-    if (navigator.getUserMedia) {
-      navigator.getUserMedia({video: true, audio: false}, setWebcamComplete, setWebcamError);
-    } else if (navigator.webkitGetUserMedia) {
-      webkit = true;
-      window.console.log('webkit');
-      navigator.webkitGetUserMedia({video: true, audio: false}, setWebcamComplete, setWebcamError);
-    } else if (navigator.mozGetUserMedia) {
-      moz = true;
-      window.console.log('moz');
-      navigator.mozGetUserMedia({video: true, audio: false}, setWebcamComplete, setWebcamError);
-    }
-  }
-
-  closeWebcam = function () {
-    document.getElementById("qr_scanner").style.display = 'none';
-    scannerEnabled = false;
-  }
-
-  setWebcamComplete = function (stream) {
-    window.console.log('camCapture');
-    //var video = document.getElementById("video");
-
-    if (webkit) {
-      video.src = window.webkitURL.createObjectURL(stream);
-    } else if (moz) {
-      video.mozSrcObject = stream;
-      video.play();
-    } else {
-      video.src = stream;
-    }
-    setTimeout(captureToCanvas, 500);
-  }
-
-  setWebcamError = function () {
-    window.console.log('setWebcamError');
-  }
-
-  captureToCanvas = function () {
-    if (!scannerEnabled) {
-      return;
-    }
-    try {
-      gCtx.drawImage(video, 0, 0);
-      var personId = extractUUIDFromQRCode(qrcode.decode())
-      if( $('#person').data('uuid') != personId ) {
-        closeWebcam();
-        window.location.href = '/demo?uuid=' + personId;
-      }
-    } catch (e) {
-      console.log(e);
-    }
-    setTimeout(captureToCanvas, 500);
-  }
-
-  init = function () {
-    gCanvas = document.getElementById("qr-canvas");
-    gCtx = gCanvas.getContext("2d");
-    gCtx.clearRect(0, 0, 800, 600);
-    video = document.getElementById("video");
-  }
-  init();
-  javascript:setWebcam();
-</script>
