@@ -1,87 +1,12 @@
-<% unless @person %>
-<div class="spacer"> </div>
-<% end %>
+
+
 <div>
   <div class="ui huge inverted center aligned icon header"><%= image_tag("firststop_logo_sml.png", alt:"") %></div>
   <div class="ui huge red center aligned icon header">Try out your QR code here</div>
-  <div id="qr_scanner" class="ui huge inverted center aligned icon header">
+  <div id="qr_scanner" class="ui huge inverted center aligned icon header" data-enabled="true" data-action="/demo">
     <video id="video" style="height:200px;" autoplay></video>
     <canvas id="qr-canvas" width="800" height="600" style="display:none;width:800px;height:600px;"></canvas>
   </div>
 </div>
 
 <div style="clear:both;"> </div>
-
-<script type="text/javascript">
-  var scannerEnabled = false;
-  setWebcam = function () {
-    if (scannerEnabled) {
-      closeWebcam();
-      return;
-    }
-    document.getElementById("qr_scanner").style.display = 'block';
-    scannerEnabled = true;
-
-    if (navigator.getUserMedia) {
-      navigator.getUserMedia({video: true, audio: false}, setWebcamComplete, setWebcamError);
-    } else if (navigator.webkitGetUserMedia) {
-      webkit = true;
-      window.console.log('webkit');
-      navigator.webkitGetUserMedia({video: true, audio: false}, setWebcamComplete, setWebcamError);
-    } else if (navigator.mozGetUserMedia) {
-      moz = true;
-      window.console.log('moz');
-      navigator.mozGetUserMedia({video: true, audio: false}, setWebcamComplete, setWebcamError);
-    }
-  }
-
-  closeWebcam = function () {
-    document.getElementById("qr_scanner").style.display = 'none';
-    scannerEnabled = false;
-  }
-
-  setWebcamComplete = function (stream) {
-    window.console.log('camCapture');
-    //var video = document.getElementById("video");
-
-    if (webkit) {
-      video.src = window.webkitURL.createObjectURL(stream);
-    } else if (moz) {
-      video.mozSrcObject = stream;
-      video.play();
-    } else {
-      video.src = stream;
-    }
-    setTimeout(captureToCanvas, 500);
-  }
-
-  setWebcamError = function () {
-    window.console.log('setWebcamError');
-  }
-
-  captureToCanvas = function () {
-    if (!scannerEnabled) {
-      return;
-    }
-    try {
-      gCtx.drawImage(video, 0, 0);
-      var personId = extractUUIDFromQRCode(qrcode.decode())
-      if( $('#person').data('uuid') != personId ) {
-        closeWebcam();
-        window.location.href = '/demo?uuid=' + personId;
-      }
-    } catch (e) {
-      console.log(e);
-    }
-    setTimeout(captureToCanvas, 500);
-  }
-
-  init = function () {
-    gCanvas = document.getElementById("qr-canvas");
-    gCtx = gCanvas.getContext("2d");
-    gCtx.clearRect(0, 0, 800, 600);
-    video = document.getElementById("video");
-  }
-  init();
-  javascript:setWebcam();
-</script>

@@ -1,8 +1,8 @@
 class DemoController < ApplicationController
   def show
     uuid = params[:uuid]
-    if uuid
-      @person = Person.find_by_uuid(uuid)
+    @person = Person.find_by_uuid(uuid) if uuid
+    if @person
       render action: 'show',layout: 'without_menu'
     else
       render action: 'scan', layout: 'without_menu'
