@@ -2,66 +2,42 @@
 
 <div>
   <div class="ui huge inverted center aligned icon header"><%= image_tag("firststop_logo.png", alt:"") %></div
-</div>
+  </div>
 
-<div style="clear:both;"> </div>
+  <div style="clear:both;"> </div>
 
-<div class="ui blue segment" id="person" data-uuid="<%= @person.uuid %>">
-  <div class="ui three column grid">
-  <div class="row">
-      <div class="column">
-        <small>First Name</small>
-        <div class="details"><%=  @person.first_name %></div>
-      </div>
-      <div class="column">
-        <small>Last Name</small>
-        <div class="details"><%=  @person.last_name %></div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="column">
-        <small>Birthday</small>
-        <div class="details"><%=  @person.dob %></div>
-      </div>
-      <div class="column">
-        <small>Gender</small>
-        <div class="details"><%=  @person.sex %></div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="column"></div>
-      <div class="column">
-        <small>Phone</small>
-        <div class="details"><%=  @person.mobile %></div>
-      </div>
-      <div class="column">
-        <small>Email</small>
-        <div class="details"><%=  @person.email %></div>
-      </div>
-      <div class="column">
-        <small>Address</small>
-        <div class="details"><%=  @person.address %></div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="column"></div>
-      <div class="column">
-        <small>Suburb</small>
-        <div class="details"><%=  @person.suburb %></div>
-      </div>
-      <div class="column">
-        <small>State</small>
-        <div class="details"><%=  @person.state %></div>
-      </div>
-      <div class="column">
-        <small>Postcode</small>
-        <div class="details"><%=  @person.postcode %></div>
+  <div class="ui blue segment" id="person" data-uuid="<%= @person.uuid %>">
+    <div class="ui three column grid">
+      <div class="row">
+        <div class="column">
+          <small>First Name</small>
+          <div class="details"><%=  @person.first_name %></div>
+        </div>
+        <div class="column">
+          <small>Last Name</small>
+          <div class="details"><%=  @person.last_name %></div>
+        </div>
       </div>
       <div class="row">
-        <div class="column"></div>
         <div class="column">
-          <small>Pet Details</small>
-          <div class="details"><%=  @person.pet_details %></div>
+          <small>Birthday</small>
+          <div class="details"><%=  @person.dob %></div>
+        </div>
+        <div class="column">
+          <small>Gender</small>
+          <div class="details"><%=  @person.sex %></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <small>Address</small>
+          <div class="details"><%=  @person.address %></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <small>Suburb</small>
+          <div class="details"><%=  @person.suburb %></div>
         </div>
         <div class="column">
           <small>State</small>
@@ -71,6 +47,24 @@
           <small>Postcode</small>
           <div class="details"><%=  @person.postcode %></div>
         </div>
+      </div>
+      <div class="row">
+        <div class="column"></div>
+        <div class="column">
+          <small>Phone</small>
+          <div class="details"><%=  @person.mobile %></div>
+        </div>
+        <div class="column">
+          <small>Email</small>
+          <div class="details"><%=  @person.email %></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <small>Pets</small>
+          <div class="details"><%=  @person.pet_details %></div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

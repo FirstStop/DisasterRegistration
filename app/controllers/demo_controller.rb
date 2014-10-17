@@ -7,6 +7,7 @@ class DemoController < ApplicationController
     else
       render action: 'scan', layout: 'without_menu'
     end
-
+  rescue
+    render action: 'scan', layout: 'without_menu'
   end
 end

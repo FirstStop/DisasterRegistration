@@ -34,6 +34,7 @@ $ ->
   closeWebcam = ->
     document.getElementById("qr_scanner").style.display = "none"
     scannerEnabled = false
+    $(".dial").trigger('go')
     return
 
   setWebcamComplete = (stream) ->
