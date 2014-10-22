@@ -10,6 +10,8 @@ gem 'mongo_mapper'
 gem 'bson_ext'
 gem 'exodus'
 
+gem 'rqrcode_png'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets

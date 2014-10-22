@@ -1,3 +1,5 @@
+require 'rqrcode_png'
+
 class PeopleController < ApplicationController
   before_action :set_person, only: [:show, :edit, :update, :destroy, :qr]
   before_action :set_menu
@@ -19,9 +21,16 @@ class PeopleController < ApplicationController
   end
 
   # GET /people/1/qr
+  Mime::Type.register "image/png", :png
   def qr
-    @person_data = @person.uuid
-    # @person_data = @person.first_name + ' ' + @person.last_name
+    @person_data = @person.v_card
+    respond_to do |format|
+      format.png do
+        data = qr_code(@person_data, 8).to_img.resize(400, 400)
+        send_data data, :type => 'image/png', :disposition => 'inline' 
+      end
+      format.html { render :qr }
+    end
   end
 
   # GET /people/new
@@ -73,6 +82,15 @@ class PeopleController < ApplicationController
   end
 
   private
+    def qr_code(data, size)
+      begin
+        RQRCode::QRCode.new( data, :size => size, :level => :l)
+      rescue
+        size += 1
+        retry unless size > 40
+      end
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_person
       @person = Person.find(params[:id])

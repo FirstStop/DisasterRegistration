@@ -68,6 +68,10 @@ $ ->
     setTimeout captureToCanvas, 500
     return
 
+  extractUUIDFromQRCode = (str) ->
+    match = str.match(/uuid[:=](.*)$/m)
+    return if match then match[1] else ""
+
   $('#scan-badge').click -> setWebcam()
 
   gCanvas = document.getElementById("qr-canvas")
