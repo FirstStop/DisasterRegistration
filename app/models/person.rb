@@ -43,6 +43,19 @@ class Person
     end
   end
 
+  def v_card
+    <<-eos
+BEGIN:VCARD
+VERSION:2.1
+N:#{first_name};#{last_name}
+UID:urn:uuid:#{uuid}
+TEL;HOME;voice:#{current_contact_phone}
+ADR:;;#{address};#{suburb};#{state};#{postcode}
+EMAIL:#{email}
+END:VCARD
+    eos
+  end
+
 
   private
   def create_uuid
