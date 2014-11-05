@@ -2,140 +2,14 @@
 
   <%= image_tag("logo_tagline.png", height:'100px') %>
 
-  <div class="ui form" wizard-node="wizard.welcome">
-    <h2>Your FirstStop</h2>
-    <p>FirstStop enables you to easily share your details with those who can help you.</p>
-    <p>Registering provides you with a personalised QR Code that allows you to share your details only with those you want to.</p>
-    <button class="ui button" wizard-next="wizard.basic_information">Start my registration</button>
-  </div>
-
-  <div class="ui form" wizard-node="wizard.basic_information">
-    <form>
-      <h2>Who are you?</h2>
-
-      <div class="two fields">
-        <div class="field">
-          <label>First Name</label>
-          <input name="first_name" placeholder="First Name" type="text">
-        </div>
-        <div class="field">
-          <label>Last Name</label>
-          <input name="last_name" placeholder="Last Name" type="text">
-        </div>
-      </div>
-
-      <div class="field">
-        <label>Gender</label>
-        <select class="ui selection dropdown" name="sex" placeholder="Gender">
-            <option value=""></option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Gender-neutral</option>
-        </select>
-      </div>
-
-      <div class="date field">
-        <label>Birthday</label>
-        <input name="dob" type="text" placeholder="xx/xx/xxxx">
-      </div>
-
-      <button class="ui button" wizard-next="wizard.address">Next</button>
-    </form>
-  </div>
-
-  <div class="ui form" wizard-node="wizard.address">
-    <form>
-      <h2>What's your current home address?</h2>
-
-      <div class="field">
-        <label>Address</label>
-        <input name="address" placeholder="Address" type="text">
-      </div>
-
-      <div class="three fields">
-        <div class="field">
-          <label>Suburb</label>
-          <input name="suburb" placeholder="Suburb" type="text">
-        </div>
-
-        <div class="field">
-          <label>Postcode</label>
-          <input name="postcode" placeholder="Postcode" type="tel" pattern="\d*">
-        </div>
-
-        <div class="field">
-          <label>State</label>
-          <input name="state" placeholder="State" type="text">
-        </div>
-      </div>
-
-      <button class="ui button" wizard-next="wizard.contact">Next</button>
-    </form>
-  </div>
-
-  <div class="ui form" wizard-node="wizard.contact">
-    <form>
-      <h2>How can we contact you?</h2>
-
-      <div class="field">
-        <label>Email</label>
-        <input name="email" placeholder="Email" type="email">
-      </div>
-
-      <div class="field">
-        <label>Phone</label>
-        <input name="mobile" placeholder="Phone" type="tel">
-      </div>
-
-      <button class="ui button" wizard-next="wizard.pets">Next</button>
-    </form>
-  </div>
-
-  <div class="ui form" wizard-node="wizard.pets">
-    <form>
-      <h2>Do you have pets?</h2>
-
-      <div class="ui buttons">
-        <button class="ui button" wizard-next="wizard.pets2">yes</button>
-        <div class="or"></div>
-        <button class="ui button" wizard-next="wizard.what_happend">No</button>
-      </div>
-    </form>
-  </div>
-
-  <div class="ui form" wizard-node="wizard.pets2">
-    <form>
-      <h2>Tell us about your pets</h2>
-
-      <div class="field">
-        <textarea name="pet_details" placeholder="e.g. names, dog or cat" width="100%"></textarea>
-      </div>
-
-      <button class="ui button" wizard-next="wizard.what_happend">Next</button>
-    </form>
-  </div>
-
-  <div class="ui form" wizard-node="wizard.what_happend">
-    <form>
-      <h2>Tell us your story</h2>
-
-      <div class="field">
-        <textarea name="current_situation" placeholder="Can you share your story and how you have been affected." width="100%"></textarea>
-      </div>
-
-      <button class="ui positive button" wizard-submit="wizard.qr_code">Register me</button>
-    </form>
-  </div>
-
-
-  <div wizard-node="wizard.qr_code">
-    <h2>Thank you for your registration</h2>
-    <p>Please collect your FirstStop QR code from the printing station and take it with you to the support organisations here to help you.</p>
-    <br />
-    <div id="wizard-qr-code"></div>
-    <br><br>
-    <a class="ui button" href="/wizard">Start over</a>
-  </div>
-
+  <% @model.each do |node| %>
+    <div class="ui form" wizard-node="<%= node.id %>">
+      <form>
+        <% node.content.each do |component| %>
+          <%= render component.template_name, component: component %>
+        <% end %>
+      </form>
+    </div>
+  <% end %>
 
 </div>
