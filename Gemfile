@@ -32,20 +32,24 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'semantic-ui-sass', '~> 0.16.1.0'
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-gem 'spring',        group: :development
-gem 'sqlite3', :group => [:development, :test]
+gem 'spring', group: :development
 
 gem 'bcrypt'
 
 gem 'jquery-smooth-scroll-rails'
 
- #database
-
-
 group :production do
   gem 'thin'
   gem 'rails_12factor'
+end
 
+group :test do
+  gem 'cucumber-rails', :require => false
+  gem 'database_cleaner'
+  gem 'simplecov'
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'factory_girl_rails'
 end
 
 # Use ActiveModel has_secure_password
