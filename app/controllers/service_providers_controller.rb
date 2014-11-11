@@ -77,7 +77,7 @@ class ServiceProvidersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_service_provider
       @service_provider = ServiceProvider.find(params[:id])
-      puts "From mongo #{@service_provider.to_mongo}"
+      logger.debug "From mongo #{@service_provider.to_mongo}"
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

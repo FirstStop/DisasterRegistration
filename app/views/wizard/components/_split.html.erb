@@ -1,0 +1,5 @@
+<div class="<%= component.number%> fields">
+  <% component.content.each do |subcomponent| %>
+    <%= render subcomponent.template_name, component: subcomponent %>
+  <% end %>
+</div>

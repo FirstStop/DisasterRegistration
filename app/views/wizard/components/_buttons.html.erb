@@ -1,0 +1,8 @@
+<div class="ui buttons">
+  <% component.content.each do |subcomponent| %>
+    <%= render subcomponent.template_name, component: subcomponent %>
+    <% if subcomponent != component.content.last %>
+      <div class="or"></div>
+    <% end %>
+  <% end %>
+</div>

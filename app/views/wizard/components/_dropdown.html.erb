@@ -1,0 +1,9 @@
+<div class="field">
+  <label><%= component.text %></label>
+  <select class="ui selection dropdown" name="<%= component.id %>" placeholder="<%= component.placeholder %>">
+    <option value=""></option>
+     <% component.options.each do |key, text| %>
+       <option value="<%= key %>"><%= text %></option>
+     <% end %>
+  </select>
+</div>
