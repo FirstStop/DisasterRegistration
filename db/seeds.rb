@@ -26,3 +26,6 @@ Person.create(uuid: '000000000000000000000018', first_name: 'Seth', last_name: '
 Person.create(uuid: '000000000000000000000019', first_name: 'Jane', last_name: 'Wilsun', gender: 'Female', address: '44 Redgum Close', suburb: 'Winmalee', postcode: '2777', state: 'NSW')
 Person.create(uuid: '000000000000000000000020', first_name: 'Irene', last_name: 'Yung', gender: 'Female', address: '85 Filmore Street', suburb: 'Winmalee', postcode: '2777', state: 'NSW')
 
+ServiceProvider.create(name: 'Australian Red Cross', person: Person.all[1..10])
+ServiceProvider.create(name: 'Lions Clubs', person: Person.all[5..15])
+ServiceProvider.create(name: 'The Salvation Army', person: Person.all[10..20])
