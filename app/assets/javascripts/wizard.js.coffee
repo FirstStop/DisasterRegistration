@@ -33,11 +33,7 @@ makeFormReadOnly = ->
 
 
 updateQRCode = (id) ->
-  qrcode = new QRCode(document.getElementById("wizard-qr-code"), {
-    width : 200,
-    height : 200
-  });
-  qrcode.makeCode(id);
+  $("#wizard-qr-code").append "<img width='200' height='200' src='/people/#{id}.png' />"
 
 $(document).ready ->
   hideSteps()
