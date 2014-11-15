@@ -50,6 +50,9 @@ group :test do
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'factory_girl_rails'
+
+  gem "codeclimate-test-reporter"
+  gem 'coveralls'
 end
 
 # Use ActiveModel has_secure_password

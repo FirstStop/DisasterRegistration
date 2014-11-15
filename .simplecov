@@ -1,3 +1,11 @@
-SimpleCov.start 'rails' do
-  # any custom configs like groups and filters can be here at a central place
-end
+require 'codeclimate-test-reporter'
+require 'coveralls'
+
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
+  Coveralls::SimpleCov::Formatter,
+  SimpleCov::Formatter::HTMLFormatter,
+  CodeClimate::TestReporter::Formatter
+]
+
+
+SimpleCov.start 'rails'
