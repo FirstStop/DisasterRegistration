@@ -16,21 +16,28 @@ class PeopleController < ApplicationController
 
   # GET /people/1
   # GET /people/1.json
+  # GET /people/1.png
+  # GET /people/1.vcf
   def show
     log_access "view person details: #{@person.uuid}"
+
+    respond_to do |format|
+      format.png do
+        qr_code = qr_code(@person)
+        send_data qr_code, :type => 'image/png', :disposition => 'inline'
+      end
+      format.vcf {
+        send_data @person.v_card.to_s, :filename => "#{@person.name}.vcf"
+      }
+      format.json { render :json => @person }
+      format.html { render :show }
+    end
+
   end
 
   # GET /people/1/qr
-  Mime::Type.register "image/png", :png
   def qr
-    @person_data = @person.v_card
-    respond_to do |format|
-      format.png do
-        data = qr_code(@person_data, 8).to_img.resize(400, 400)
-        send_data data, :type => 'image/png', :disposition => 'inline' 
-      end
-      format.html { render :qr }
-    end
+    log_access "view person print out: #{@person.uuid}"
   end
 
   # GET /people/new
@@ -82,9 +89,13 @@ class PeopleController < ApplicationController
   end
 
   private
-    def qr_code(data, size)
+    def qr_code(person, size = 8)
+      data = settings.qr_code_generator.content(person)
       begin
-        RQRCode::QRCode.new( data, :size => size, :level => :l)
+        img = RQRCode::QRCode.new( data, :size => size, :level => :l).to_img.resize(400, 400)
+        logger.info "created qr code, user=#{person.id}, size=#{size}, content=#{data}"
+
+        return img
       rescue
         size += 1
         retry unless size > 40
