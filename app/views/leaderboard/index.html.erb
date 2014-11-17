@@ -1,0 +1,6 @@
+<h1>Leaderboard</h1>
+<ol>
+  <% @stats.each do | (person,count) | %>
+    <li><%= person.name %> : <%= count %></li>
+  <% end %>
+</ol>

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'demo' => 'demo#show'
 
   resources :stream
+  resources :leaderboard
 
   resources :service_providers do
     member do
