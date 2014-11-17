@@ -27,6 +27,7 @@ class PeopleController < ApplicationController
         send_data qr_code, :type => 'image/png', :disposition => 'inline'
       end
       format.vcf {
+        @person.create_activity :vcard_accessed
         send_data @person.v_card.to_s, :filename => "#{@person.name}.vcf"
       }
       format.json { render :json => @person }
