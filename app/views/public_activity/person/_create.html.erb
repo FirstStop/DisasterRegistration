@@ -1,5 +1,15 @@
-<p>
-  <strong><%= a.trackable.name %></strong> registered
-  <%= distance_of_time_in_words_to_now(a.created_at) %>
-  ago
-</p>
+<div class="event">
+  <div class="label">
+    <i class="circular add sign icon"></i>
+  </div>
+
+  <div class="content">
+    <div class="date">
+      <%= distance_of_time_in_words_to_now(a.created_at) %> ago
+    </div>
+
+    <div class="summary">
+      <%= link_to a.trackable.name, a.trackable %> registered
+    </div>
+  </div>
+</div>
