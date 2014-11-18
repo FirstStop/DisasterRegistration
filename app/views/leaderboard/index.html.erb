@@ -1,6 +1,20 @@
 <h1>Leaderboard</h1>
-<ol>
+
+<div class="ui items">
+
   <% @stats.each do | (person,count) | %>
-    <li><%= person.name %> : <%= count %></li>
+
+    <div class="item">
+      <div class="image">
+        <img src="http://lorempixel.com/400/300/people/?id=<%= person.id  %>">
+      </div>
+      <div class="content">
+        <div class="name"><%= person.name %></div>
+        <p>funnny fact</p>
+        <div class="extra">
+          <%= count %> scans
+        </div>
+      </div>
+    </div>
   <% end %>
-</ol>
+</div>
