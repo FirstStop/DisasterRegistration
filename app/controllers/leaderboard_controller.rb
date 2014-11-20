@@ -4,5 +4,7 @@ class LeaderboardController < ApplicationController
         .group_by {|a|a.trackable}
         .map{|(person,activities)| [person, activities.count]}]
     @stats = unordered_stats.sort_by {|k, v| -v}
+
+    render action: :index, layout: 'without_menu'
   end
 end
