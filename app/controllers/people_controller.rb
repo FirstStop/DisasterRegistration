@@ -1,7 +1,6 @@
-require 'rqrcode_png'
 
 class PeopleController < ApplicationController
-  before_action :set_person, only: [:show, :edit, :update, :destroy, :qr]
+    before_action :set_person, only: [:show, :edit, :update, :destroy, :qr, :token, :print_token]
   before_action :set_menu
   def set_menu
     @menu = {people: true}
@@ -26,12 +25,38 @@ class PeopleController < ApplicationController
     @person_data = @person.v_card
     respond_to do |format|
       format.png do
-        data = qr_code(@person_data, 8).to_img.resize(400, 400)
+          data = Services::Token.qr_code(@person_data, 8).to_img.resize(400, 400)
         send_data data, :type => 'image/png', :disposition => 'inline' 
       end
       format.html { render :qr }
     end
   end
+
+  # GET /people/1/token
+  Mime::Type.register "application/pdf", :pdf
+  def token
+    respond_to do |format|
+        format.html { render :token }
+        format.pdf do
+            pdf = Services::Token.generate_token_pdf(@person)
+            send_data pdf.render, filename: 'token.pdf', type: 'application/pdf'
+        end
+    end
+  end
+
+# GET /people/1/print_token
+def print_token
+    respond_to do |format|
+        format.html {
+             pdf = Services::Token.generate_token_pdf(@person)
+             file = Tempfile.new('')
+             file.puts(pdf.render.force_encoding('UTF-8'))
+             file.close
+
+             Services::Printers.print_token(file, "DC03")
+             redirect_to people_url, notice: 'Person was successfully printed.'}
+    end
+end
 
   # GET /people/new
   def new
@@ -82,14 +107,6 @@ class PeopleController < ApplicationController
   end
 
   private
-    def qr_code(data, size)
-      begin
-        RQRCode::QRCode.new( data, :size => size, :level => :l)
-      rescue
-        size += 1
-        retry unless size > 40
-      end
-    end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_person
