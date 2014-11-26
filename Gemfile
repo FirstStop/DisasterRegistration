@@ -12,6 +12,10 @@ gem 'exodus'
 
 gem 'rqrcode_png'
 
+# Printing
+gem 'cups', '~> 0.1.10'
+gem 'prawn', '~> 1.3.0'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
