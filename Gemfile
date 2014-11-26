@@ -13,7 +13,7 @@ gem 'exodus'
 gem 'rqrcode_png'
 
 # Printing
-gem 'cups', '~> 0.1.10'
+gem 'cups', '~> 0.1.9'
 gem 'prawn', '~> 1.3.0'
 
 # Use SCSS for stylesheets

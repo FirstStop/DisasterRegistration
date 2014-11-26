@@ -11,7 +11,9 @@ module Services
         if printer_name == nil
             printer_name = Cups.default_printer
         end
-        Rails.logger.info "Print #{printer_name} options\n #{Cups.options_for(printer_name)}"
+        Rails.logger.info "Default printer #{Cups.default_printer}"
+        Rails.logger.info "Print #{printer_name}\n"
+        Rails.logger.info "Options\n #{Cups.options_for(printer_name)}"
         print_job = Cups::PrintJob.new(file.path, printer_name, options)
         print_job.print
         Rails.logger.info "Print job  #{print_job.job_id} #{print_job.title} #{print_job.filename} - #{print_job.state}"

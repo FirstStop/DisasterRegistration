@@ -38,7 +38,7 @@ class PeopleController < ApplicationController
     respond_to do |format|
         format.html { render :token }
         format.pdf do
-            pdf = Services::Token.generate_token_pdf(@person)
+            pdf = Services::Token.generate_token_pdf(@person, 'DC03')
             send_data pdf.render, filename: 'token.pdf', type: 'application/pdf'
         end
     end
@@ -48,7 +48,7 @@ class PeopleController < ApplicationController
 def print_token
     respond_to do |format|
         format.html {
-             pdf = Services::Token.generate_token_pdf(@person)
+             pdf = Services::Token.generate_token_pdf(@person, 'DC03')
              file = Tempfile.new('')
              file.puts(pdf.render.force_encoding('UTF-8'))
              file.close

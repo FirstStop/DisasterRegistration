@@ -15,7 +15,7 @@ class TokenTests < ActiveSupport::TestCase
     end
 
     test "Can generate PDF" do
-        pdf = Services::Token.generate_token_pdf(@person)
+        pdf = Services::Token.generate_token_pdf(@person, 'OC03')
         assert(pdf.page_count == 1, "Non zero PDF  contents")
     end
 
