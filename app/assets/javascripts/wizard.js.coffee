@@ -48,3 +48,13 @@ $(document).ready ->
     submitForm(name)
     makeFormReadOnly()
     false
+
+
+
+
+  #image selector
+  $('.image_selector .ui.image').click ->
+    $(this).parent().children().removeClass('active')
+    $(this).addClass('active')
+    $(this).parent().children('input').val($(this).data('img-name'))
+
