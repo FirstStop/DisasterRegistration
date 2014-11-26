@@ -28,7 +28,9 @@ class PeopleController < ApplicationController
       end
       format.vcf {
         @person.create_activity :vcard_accessed
-        send_data @person.v_card.to_s, :filename => "#{@person.name}.vcf"
+        render plain: @person.v_card.to_s
+        response.content_type = "text/x-vcard"
+        response.headers['Content-Length'] = @person.v_card.size.to_s
       }
       format.json { render :json => @person }
       format.html { render :show }
