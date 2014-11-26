@@ -7,9 +7,6 @@
 
   <% @stats.each do | (person,count) | %>
     <div class="item" leaderboard-person>
-      <div class="image">
-        <img src="http://lorempixel.com/400/400/people/?id=<%= person.id  %>">
-      </div>
       <div class="content">
         <div class="name"><%= person.name %></div>
         <%= count %> scans
