@@ -15,21 +15,31 @@ class PeopleController < ApplicationController
 
   # GET /people/1
   # GET /people/1.json
+  # GET /people/1.png
+  # GET /people/1.vcf
   def show
     log_access "view person details: #{@person.uuid}"
-  end
 
-  # GET /people/1/qr
-  Mime::Type.register "image/png", :png
-  def qr
-    @person_data = @person.v_card
     respond_to do |format|
       format.png do
           data = Services::Token.qr_code(@person_data, 8).to_img.resize(400, 400)
         send_data data, :type => 'image/png', :disposition => 'inline' 
       end
-      format.html { render :qr }
+      format.vcf {
+        @person.create_activity :vcard_accessed
+        render plain: @person.v_card.to_s
+        response.content_type = "text/x-vcard"
+        response.headers['Content-Length'] = @person.v_card.size.to_s
+      }
+      format.json { render :json => @person }
+      format.html { render :show }
     end
+
+  end
+
+  # GET /people/1/qr
+  def qr
+    log_access "view person print out: #{@person.uuid}"
   end
 
   # GET /people/1/token
@@ -126,6 +136,7 @@ end
           :address, :suburb, :state, :postcode,
           :current_contact_name, :current_contact_phone, :current_contact_email, :current_contact_description,
           :injury_description, :transport, :house_status, :others_at_address, :pet_details, :current_situation,
+          :avatar, :fun_fact, :super_power, :speciality, :nickname,
           :authenticable => [:id, :username, :password, :password_confirmation]
       )
     end

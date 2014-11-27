@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   get 'wizard' => 'wizard#index'
   get 'demo' => 'demo#show'
 
+  resources :stream
+  resources :leaderboard
+
   resources :service_providers do
     member do
       get 'add_person'

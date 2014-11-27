@@ -1,0 +1,15 @@
+<div class="event">
+  <div class="label">
+    <i class="circular qr code icon"></i>
+  </div>
+
+  <div class="content">
+    <div class="date">
+      <%= distance_of_time_in_words_to_now(a.created_at) %> ago
+    </div>
+
+    <div class="summary">
+      <%= link_to a.trackable.name, a.trackable %>'s v-card has been scanned
+    </div>
+  </div>
+</div>

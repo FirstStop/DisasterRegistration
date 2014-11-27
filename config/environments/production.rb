@@ -78,6 +78,9 @@ Rails.application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
+  routes.default_url_options[:host]='firststop.org.au'
+  routes.default_url_options[:port]="80"
+
   # Configure mongo_mapper gem
   config.gem "mongo_mapper"
   config.gem "exodus"

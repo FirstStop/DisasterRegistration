@@ -9,5 +9,6 @@ Feature: Wizard based registrations
     Then I should be asked for my basic information
 
     When I decide to submit my application
-    Then my data should be captured in the database
-    And I should see a personalised QR code
+    Then I should see a personalised QR code
+    And my data should be captured in the database
+

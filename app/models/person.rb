@@ -2,6 +2,9 @@
 class Person
     include MongoMapper::Document
 
+    include PublicActivity::Model
+    tracked
+
     key :first_name, String
     key :last_name, String
     key :dob, Date
@@ -24,7 +27,13 @@ class Person
     key :pet_details, String
     key :current_situation, String
     key :uuid, String
-    
+
+    key :avatar, String
+    key :fun_fact, String
+    key :super_power, String
+    key :speciality, String
+    key :nickname, String
+
     before_create :create_uuid
     one :authenticable, :as => :authenticable_object
     timestamps!
