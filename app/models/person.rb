@@ -27,7 +27,13 @@ class Person
     key :pet_details, String
     key :current_situation, String
     key :uuid, String
-    
+
+    key :avatar, String
+    key :fun_fact, String
+    key :super_power, String
+    key :speciality, String
+    key :nickname, String
+
     before_create :create_uuid
     one :authenticable, :as => :authenticable_object
     timestamps!

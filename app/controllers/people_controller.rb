@@ -123,6 +123,7 @@ class PeopleController < ApplicationController
           :address, :suburb, :state, :postcode,
           :current_contact_name, :current_contact_phone, :current_contact_email, :current_contact_description,
           :injury_description, :transport, :house_status, :others_at_address, :pet_details, :current_situation,
+          :avatar, :fun_fact, :super_power, :speciality, :nickname,
           :authenticable => [:id, :username, :password, :password_confirmation]
       )
     end

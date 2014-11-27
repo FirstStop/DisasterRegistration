@@ -36,7 +36,7 @@ class WizardController < ApplicationController
 
         Wizard::WizardNode.new(id: 'wizard.avatar', content: [
             Wizard::Headline.new(text: "Select an avatar"),
-            Wizard::ImageSelector.new(id: "image", images: ['superheros/adamstrange256.png', 'superheros/aquaman256.png', 'superheros/atom256.png', 'superheros/batman256.png', 'superheros/boostergold256.png', 'superheros/captainmarvel256.png', 'superheros/catwoman256.png', 'superheros/flash256.png', 'superheros/greenarrow256.png', 'superheros/greenlantern256.png', 'superheros/kittypryde256.png',  'superheros/robin256.png', 'superheros/rorschach256.png', 'superheros/spiderman256.png', 'superheros/superman256.png', 'superheros/wolverine256.png']),
+            Wizard::ImageSelector.new(id: "avatar", images: ['superheros/adamstrange256.png', 'superheros/aquaman256.png', 'superheros/atom256.png', 'superheros/batman256.png', 'superheros/boostergold256.png', 'superheros/captainmarvel256.png', 'superheros/catwoman256.png', 'superheros/flash256.png', 'superheros/greenarrow256.png', 'superheros/greenlantern256.png', 'superheros/kittypryde256.png',  'superheros/robin256.png', 'superheros/rorschach256.png', 'superheros/spiderman256.png', 'superheros/superman256.png', 'superheros/wolverine256.png']),
             Wizard::SubmitButton.new(target: 'wizard.register', text: 'Register')
         ]),
 
