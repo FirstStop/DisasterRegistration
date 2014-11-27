@@ -18,6 +18,7 @@ module Services
 
         media_parameters = {
             'DC03' =>  { :width => 90, :height =>29, :leftMargin => 2, :rightMargin => 3 , :spacing => 3 },
+            'DC04' =>  { :width => 90, :height =>38, :leftMargin => 2, :rightMargin => 3 , :spacing => 3 },
            'A4' =>  { :width => 90, :height =>29, :leftMargin => 2, :rightMargin => 3 , :spacing => 3 } }
         
         parameters = media_parameters[media]
