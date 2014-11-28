@@ -7,7 +7,7 @@
 	<p style="margin-top:40px">Everyone is here to help.</p>
 	
 	<div style="padding:15px;">
-		<img id="qrcode" style="width:200px; height:200px;display:inline-block;" src="token.pdf">
+		<img id="qrcode" style="width:200px; height:200px;display:inline-block;" src="<%= person_url(@person, format: :png) %>">
 		<div style="width:190px;display:inline-block;vertical-align:top;margin-left:20px;">
 		  	<p style="font-size:18pt;margin:0;"><%=  @person.first_name %> <%=  @person.last_name %></p>
 			<p><%=  @person.address %>, <%=  @person.suburb %>, <%=  @person.state %>, <%=  @person.postcode %></p>
@@ -22,8 +22,4 @@
 		<p style="margin:0;">While we take reasonable steps to ensure your personal information is stored securely, no data transmission over the Internet is entirely secure.</p>
 	</div>
 </div>
-<script>
-	window.print();
-</script>
-
 

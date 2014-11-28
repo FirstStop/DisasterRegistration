@@ -6,14 +6,12 @@ module Services
   class Printers
     def self.print_token(file, media, printer_name=nil)
         # DC03 => 29 mm x 90 mm
+        # DC04 => 38 mm x 90 mm
         options = { 'media' => media , 'orientation-requested' => '4'}
     
         if printer_name == nil
             printer_name = Cups.default_printer
         end
-        Rails.logger.info "Default printer #{Cups.default_printer}"
-        Rails.logger.info "Print #{printer_name}\n"
-        Rails.logger.info "Options\n #{Cups.options_for(printer_name)}"
         print_job = Cups::PrintJob.new(file.path, printer_name, options)
         print_job.print
         Rails.logger.info "Print job  #{print_job.job_id} #{print_job.title} #{print_job.filename} - #{print_job.state}"

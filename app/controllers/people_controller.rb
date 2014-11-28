@@ -24,8 +24,8 @@ class PeopleController < ApplicationController
 
     respond_to do |format|
       format.png do
-          data = Services::Token.qr_code(@person, 8).to_img.resize(400, 400)
-        send_data data, :type => 'image/png', :disposition => 'inline' 
+          qr_code = Services::Token.qr_code(@person, 8).to_img.resize(400, 400)
+          send_data qr_code, :type => 'image/png', :disposition => 'inline'
       end
       format.vcf {
         @person.create_activity :vcard_accessed
@@ -42,11 +42,20 @@ class PeopleController < ApplicationController
     end
 
   end
+  # GET /people/1/qr
+  def qr
+      log_access "view person print out: #{@person.uuid}"
+  end
+  
+  # GET /people/1/token
+  def qr
+      log_access "view person print out: #{@person.uuid}"
+  end
 
-# GET /people/1/print_token
-def print_token
-    respond_to do |format|
-        format.html {
+  # GET /people/1/print_token
+  def print_token
+      respond_to do |format|
+          format.html {
              pdf = Services::Token.generate_token_pdf(@person, 'DC04')
              file = Tempfile.new('')
              file.puts(pdf.render.force_encoding('UTF-8'))
@@ -54,8 +63,8 @@ def print_token
 
              Services::Printers.print_token(file, "DC04")
              redirect_to people_url, notice: 'Person was successfully printed.'}
-    end
-end
+      end
+  end
 
   # GET /people/new
   def new
