@@ -22,7 +22,7 @@ class WizardController < ApplicationController
 
         Wizard::WizardNode.new(id: 'wizard.contact_details', content: [
             Wizard::Headline.new(text: "What information would you like to share?"),
-            Wizard::Paragraph.new(text: "Everybody who will scan your badge will be able to see this details! Choose wisely."),
+            Wizard::Paragraph.new(text: "Note: Everybody who scans the QR code on your badge will be able to see these details, so please only enter details that you are happy to share."),
             Wizard::Input.new(id: "email", text: 'E-Mail', placeholder: ''),
             Wizard::Input.new(id: "current_contact_phone", text: 'Phone number', placeholder: ''),
             Wizard::NextButton.new(target: 'wizard.fun_fact', text: 'Next')
