@@ -3,8 +3,8 @@ class WizardController < ApplicationController
 
     @model = [
         Wizard::WizardNode.new(id: 'wizard.welcome', content: [
-            Wizard::Headline.new(text: "RHoK Weekend"),
-            Wizard::Paragraph.new(text: "Lorem Ipsum"),
+            Wizard::Headline.new(text: "RHoK Weekend - Registration"),
+            Wizard::Paragraph.new(text: "Before you "),
             Wizard::NextButton.new(target: 'wizard.basic_information', text: 'Start my registration')
         ]),
 
@@ -15,7 +15,7 @@ class WizardController < ApplicationController
                 Wizard::Input.new(id: "last_name", text: 'Last name', placeholder: '')
             ]),
             Wizard::Input.new(id: "nickname", text: 'How would you like to be called this weekend? (on badge)', placeholder: ''),
-            Wizard::Input.new(id: "speciality", text: 'Whats your speciality? (on badge)', placeholder: ''),
+            Wizard::Input.new(id: "speciality", text: 'What\'s your speciality? (on badge)', placeholder: ''),
             Wizard::NextButton.new(target: 'wizard.contact_details', text: 'Next')
         ]),
 
@@ -23,7 +23,7 @@ class WizardController < ApplicationController
             Wizard::Headline.new(text: "What information would you like to share?"),
             Wizard::Paragraph.new(text: "Everybody who will scan your badge will be able to see this details! Choose wisely."),
             Wizard::Input.new(id: "email", text: 'E-Mail', placeholder: ''),
-            Wizard::Input.new(id: "mobile", text: 'Phone number', placeholder: ''),
+            Wizard::Input.new(id: "current_contact_phone", text: 'Phone number', placeholder: ''),
             Wizard::NextButton.new(target: 'wizard.fun_fact', text: 'Next')
         ]),
 
@@ -31,7 +31,7 @@ class WizardController < ApplicationController
            Wizard::Headline.new(text: "To break the ice..."),
            Wizard::Input.new(id: "super_power", text: 'Whats your super-power?  (on badge)', placeholder: ''),
            Wizard::Input.new(id: "fun_fact", text: 'Tell us something funny about you?', placeholder: ''),
-           Wizard::NextButton.new(target: 'wizard.avatar', text: 'Nect')
+           Wizard::NextButton.new(target: 'wizard.avatar', text: 'Next')
        ]),
 
         Wizard::WizardNode.new(id: 'wizard.avatar', content: [
@@ -42,7 +42,7 @@ class WizardController < ApplicationController
 
         Wizard::WizardNode.new(id: 'wizard.register', content: [
             Wizard::Headline.new(text: "Thank you for your registration"),
-            Wizard::Paragraph.new(text: "Please collect your FirstStop name badge from the printing station and start networking with your fellow hackers.."),
+            Wizard::Paragraph.new(text: "Please collect your name badge from the printing station and start networking with your fellow hackers."),
             Wizard::Qr.new(),
             Wizard::Link.new(target: '/wizard', text: 'Start over')
         ]),
