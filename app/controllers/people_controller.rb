@@ -17,12 +17,14 @@ class PeopleController < ApplicationController
   # GET /people/1.json
   # GET /people/1.png
   # GET /people/1.vcf
+  # GET /people/1.pdf
+  Mime::Type.register "application/pdf", :pdf
   def show
     log_access "view person details: #{@person.uuid}"
 
     respond_to do |format|
       format.png do
-          data = Services::Token.qr_code(@person_data, 8).to_img.resize(400, 400)
+          data = Services::Token.qr_code(@person, 8).to_img.resize(400, 400)
         send_data data, :type => 'image/png', :disposition => 'inline' 
       end
       format.vcf {
@@ -31,39 +33,26 @@ class PeopleController < ApplicationController
         response.content_type = "text/x-vcard"
         response.headers['Content-Length'] = @person.v_card.size.to_s
       }
+      format.pdf {
+          pdf = Services::Token.generate_token_pdf(@person, settings.token_media)
+          send_data pdf.render, filename: "token-#{@person.id}.pdf", type: 'application/pdf'
+      }
       format.json { render :json => @person }
       format.html { render :show }
     end
 
   end
 
-  # GET /people/1/qr
-  def qr
-    log_access "view person print out: #{@person.uuid}"
-  end
-
-  # GET /people/1/token
-  Mime::Type.register "application/pdf", :pdf
-  def token
-    respond_to do |format|
-        format.html { render :token }
-        format.pdf do
-            pdf = Services::Token.generate_token_pdf(@person, 'DC03')
-            send_data pdf.render, filename: 'token.pdf', type: 'application/pdf'
-        end
-    end
-  end
-
 # GET /people/1/print_token
 def print_token
     respond_to do |format|
         format.html {
-             pdf = Services::Token.generate_token_pdf(@person, 'DC03')
+             pdf = Services::Token.generate_token_pdf(@person, 'DC04')
              file = Tempfile.new('')
              file.puts(pdf.render.force_encoding('UTF-8'))
              file.close
 
-             Services::Printers.print_token(file, "DC03")
+             Services::Printers.print_token(file, "DC04")
              redirect_to people_url, notice: 'Person was successfully printed.'}
     end
 end
@@ -117,7 +106,6 @@ end
   end
 
   private
-
     # Use callbacks to share common setup or constraints between actions.
     def set_person
       @person = Person.find(params[:id])
