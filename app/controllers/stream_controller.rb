@@ -3,4 +3,12 @@ class StreamController < ApplicationController
     @activities = PublicActivity::Activity.all
     render action: :index, layout: 'without_menu'
   end
+
+  def registrations
+    @people = Person.where(:created_at.gt => Time.parse(params[:since]))
+
+    respond_to do |format|
+      format.json { render json: @people }
+    end
+  end
 end
