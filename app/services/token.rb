@@ -48,7 +48,6 @@ module Services
 
         pdf.text_box "#{person.super_power}", :at => [leftMargin + height + spacing, height - 20  - 16 - spacing - spacing], :width => textWidth, :height => 16, :overflow => :shrink_to_fit
         pdf.text_box "RHoK Sydney November 2014", :at => [leftMargin + height + spacing, spacing], :size => 6
-        person_data = person.v_card
         pdf.image StringIO.new(self.qr_code(person, 8).to_img.resize(300, 300).to_blob), :at => [leftMargin, height], :fit => [height, height]
         return pdf
     end

@@ -18,7 +18,6 @@ class PeopleController < ApplicationController
   # GET /people/1.png
   # GET /people/1.vcf
   # GET /people/1.pdf
-  Mime::Type.register "application/pdf", :pdf
   def show
     log_access "view person details: #{@person.uuid}"
 
