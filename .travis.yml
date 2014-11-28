@@ -8,3 +8,4 @@ before_script:
 before_install:
   - sudo apt-get update -qq
   - sudo apt-get install cups
+  - sudo apt-get install libcupsys2-dev
