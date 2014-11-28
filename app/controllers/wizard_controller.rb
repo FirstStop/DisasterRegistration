@@ -3,8 +3,8 @@ class WizardController < ApplicationController
 
     @model = [
         Wizard::WizardNode.new(id: 'wizard.welcome', content: [
-            Wizard::Headline.new(text: "RHoK Weekend - Registration"),
-            Wizard::Paragraph.new(text: "Before you "),
+            Wizard::Headline.new(text: "Hello, nice to meet you."),
+            Wizard::Paragraph.new(text: "Before we are starting to do something  good for the world, please register your details with us. We will print your very-own name tag for this weekend! If you want to connect with others, just scan the QR code on their name tag and add them to your contacts."),
             Wizard::NextButton.new(target: 'wizard.basic_information', text: 'Start my registration')
         ]),
 
