@@ -38,6 +38,9 @@ gem 'bcrypt'
 
 gem 'jquery-smooth-scroll-rails'
 
+gem 'public_activity'
+
+
 group :production do
   gem 'thin'
   gem 'rails_12factor'

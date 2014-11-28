@@ -1,0 +1,23 @@
+// Place all the styles related to the leaderboard controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "mixins";
+
+.leaderboard {
+  body {
+    @include full-image-background('EM0524.jpg')
+  }
+
+  h1 {
+    padding-top: 20px;
+    padding-bottom: 40px;
+  }
+
+  div.item[leaderboard-person] {
+    @include transparent-background;
+    box-shadow: none;
+    border: none;
+    min-height: 100px;
+  }
+}

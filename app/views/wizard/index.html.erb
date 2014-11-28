@@ -1,6 +1,9 @@
 <div wizard="wizard">
 
-  <%= image_tag("logo_tagline.png", height:'100px') %>
+  <div class="ui medium images">
+    <%= image_tag("rhok.png", class:'ui image') %>
+    <%= image_tag("logo_tagline.png", class:'ui image right floated') %>
+  </div>
 
   <% @model.each do |node| %>
     <div class="ui form" wizard-node="<%= node.id %>">

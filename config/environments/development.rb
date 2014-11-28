@@ -1,3 +1,5 @@
+require 'socket'
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -31,6 +33,10 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  #used for qr code generation
+  routes.default_url_options[:host]=Socket.gethostname
+  routes.default_url_options[:port]="3000"
   
   # Configure mongo_mapper gem
   config.gem "mongo_mapper"

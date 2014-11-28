@@ -1,0 +1,20 @@
+// Place all the styles related to the stream controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "mixins";
+
+.stream {
+  body {
+    @include full-image-background('EM0524.jpg')
+  }
+
+  .ui.feed .event {
+    @include transparent-background;
+
+    padding: 10px;
+
+    margin: 0 auto;
+    margin-bottom: 10px;
+    max-width: 600px;
+  }
+}
