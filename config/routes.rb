@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   get 'wizard' => 'wizard#index'
   get 'demo' => 'demo#show'
 
+  get 'stream/registrations' => 'stream#registrations'
   resources :stream
+
   resources :leaderboard
 
   resources :service_providers do
