@@ -7,7 +7,4 @@ class WelcomeController < ApplicationController
   def index
     render layout: 'without_menu'
   end
-
-  def checklist
-  end
 end
