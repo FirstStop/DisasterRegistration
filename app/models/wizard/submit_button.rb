@@ -1,5 +1,6 @@
 module Wizard
   class SubmitButton < Component
-    attr_accessor :target, :text
+    key :target, String
+    key :label, String
   end
 end

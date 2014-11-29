@@ -1,0 +1,7 @@
+<div class="ui form" wizard-node="<%= component.name %>">
+  <form>
+    <% component.content.each do |sub_component| %>
+      <%= render sub_component.template_name, component: sub_component %>
+    <% end %>
+  </form>
+</div>

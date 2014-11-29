@@ -1,14 +1,8 @@
 
 class PeopleController < ApplicationController
-    before_action :set_person, only: [:show, :edit, :update, :destroy, :qr, :token, :print_token]
-  before_action :set_menu
-  def set_menu
-    @menu = {people: true}
-  end
+  before_action :set_person, only: [:show, :update]
 
   def show
-    log_access "view person details: #{@person.uuid}"
-
     respond_to do |format|
       format.png do
           qr_code = Services::Token.qr_code(@person, 8).to_img.resize(400, 400)
@@ -26,7 +20,6 @@ class PeopleController < ApplicationController
       }
       format.json { render :json => @person }
     end
-
   end
 
   def create
@@ -50,16 +43,16 @@ class PeopleController < ApplicationController
     end
   end
 
+  def new
+    @wizard = ServiceProvider.find_by_special_role(:registration).wizard
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_person
       @person = Person.find(params[:id])
     end
 
-    def log_access(action)
-      username = current_user ? current_user.username : 'ANONYMOUS'
-        logger.info "User: <#{username}>; Action: <#{action}>"
-    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def person_params
@@ -70,7 +63,6 @@ class PeopleController < ApplicationController
           :current_contact_name, :current_contact_phone, :current_contact_email, :current_contact_description,
           :injury_description, :transport, :house_status, :others_at_address, :pet_details, :current_situation,
           :avatar, :fun_fact, :super_power, :speciality, :nickname,
-          :authenticable => [:id, :username, :password, :password_confirmation]
       )
     end
 end

@@ -35,21 +35,10 @@ class Person
     key :nickname, String
 
     before_create :create_uuid
-    one :authenticable, :as => :authenticable_object
     timestamps!
  
   def name
     "#{last_name}, #{first_name}"
-  end
-
-  def accessible_for_user authenticable
-    if authenticable.try(:authenticable).nil?
-      true
-    elsif authenticable.authenticable is_a? Person.class
-      authenticable.authenticable == self
-    elsif authenticable.authenticable is_a? ServiceProvider.class
-      authenticable.authenticable_object.clients.include? self
-    end
   end
 
   def v_card

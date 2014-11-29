@@ -1,5 +1,5 @@
 module Wizard
   class Buttons < Component
-    attr_accessor :content
+    many :content, class: Component
   end
 end

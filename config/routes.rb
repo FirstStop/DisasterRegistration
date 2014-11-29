@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'wizard' => 'wizard#index'
 
   get 'stream/registrations' => 'stream#registrations'
   resources :stream
@@ -14,7 +13,7 @@ Rails.application.routes.draw do
   post 'session/login' => 'session#do_login'
   get 'session/logout'
 
-  resources :people, only: [:show, :create, :update]
+  resources :people, only: [:show, :create, :update, :new]
 
   root :to => 'welcome#index'
   get 'checklist' => 'welcome#checklist'

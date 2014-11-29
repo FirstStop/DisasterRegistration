@@ -1,5 +1,8 @@
 module Wizard
   class Dropdown < Component
-    attr_accessor :id, :text, :placeholder, :options
+    key :attribute, String
+    key :label, String
+    key :placeholder, String
+    key :options, Array
   end
 end

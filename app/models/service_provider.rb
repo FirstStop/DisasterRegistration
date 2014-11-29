@@ -1,13 +1,20 @@
 class ServiceProvider
     include MongoMapper::Document
-    
+    extend Enumerize
+
+
     key :name, String
-    key :services_supplies, String
+
     key :clients, Array
+    many :person, :in => :clients
+
+    one :wizard, class: Wizard::Wizard
+
+    key :special_role
+    enumerize :special_role, in: [:registration], scope: true
    
-   many :person, :in => :clients
-    one :authenticable, :class_name => "Authenticable", :as => :authenticable_object
-    
+
+
     timestamps!
 
 end

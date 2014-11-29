@@ -2,7 +2,8 @@
 Feature: Wizard based registrations
 
   Scenario: As a survivor, I want to use have a guided self registration
-    Given I am on the registration page
+    Given a basic registration wizard is defined
+    And I am on the registration page
     Then I should see an explanation about FirstStop
 
     When I select to start my registration

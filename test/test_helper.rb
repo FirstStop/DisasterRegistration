@@ -8,3 +8,13 @@ require 'rails/test_help'
 class ActiveSupport::TestCase
   include FactoryGirl::Syntax::Methods
 end
+
+class ActiveSupport::TestCase
+  def setup
+    DatabaseCleaner.start
+  end
+
+  def teardown
+    DatabaseCleaner.clean
+  end
+end

@@ -1,5 +1,5 @@
 module Wizard
   class Paragraph < Component
-    attr_accessor :text
+    key :text, String
   end
 end
