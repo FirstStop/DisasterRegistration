@@ -26,4 +26,17 @@
     }
   }
 
+  .ui.progress {
+    position: fixed;
+    bottom: 0px;
+    border-radius: 0px;
+    left: 0px;
+    right: 0px;
+
+    .label {
+      padding-left: 10px;
+      line-height: 23px;
+    }
+  }
+
 }

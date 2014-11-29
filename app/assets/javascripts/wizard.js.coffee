@@ -6,12 +6,14 @@ hideSteps = ->
   $("*[wizard-node]:not(:first)").hide()
 
 showNextStep = (name) ->
-  next_step = $("*[wizard-node='#{name}']")
-  next_step.show()
+  nextStep = $("*[wizard-node='#{name}']")
+  nextStep.show()
+
+  updateProgressIndicator()
 
   setTimeout ->
     $.smoothScroll({
-      scrollTarget: next_step,
+      scrollTarget: nextStep,
       offset: -30
     })
 
@@ -38,12 +40,22 @@ submitForm = (nextStep) ->
 makeFormReadOnly = ->
   $('input,select,textarea').attr('readonly', 'readonly');
 
-
 updateQRCode = (id) ->
   $("#wizard-qr-code").append "<img width='200' height='200' src='/people/#{id}.png' />"
 
+
+updateProgressIndicator = ->
+  numberOfWizardPages = $('div[wizard-node]').length
+  numberOfCompletedWizardPages = $('div[wizard-node]:visible').length
+
+  percentage = numberOfCompletedWizardPages/numberOfWizardPages*100
+
+  $("#wizard-progress .bar").width("#{percentage}%")
+  $("#wizard-progress .label").text("#{numberOfCompletedWizardPages} of #{numberOfWizardPages}")
+
 $(document).ready ->
   hideSteps()
+  updateProgressIndicator()
 
   $('input[wizard-next],button[wizard-next]').click ->
     name = $(this).attr('wizard-next')
@@ -55,8 +67,6 @@ $(document).ready ->
     submitForm(nextStep)
     makeFormReadOnly()
     false
-
-
 
 
   #image selector
