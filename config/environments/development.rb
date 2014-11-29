@@ -35,9 +35,12 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   #used for qr code generation
-  routes.default_url_options[:host]=Socket.gethostname
-  routes.default_url_options[:port]="3000"
+  #routes.default_url_options[:host]=Socket.gethostname
+  #routes.default_url_options[:port]="3000"
   
+  routes.default_url_options[:host]='firststop.org.au'
+  routes.default_url_options[:port]="80"
+
   # Configure mongo_mapper gem
   config.gem "mongo_mapper"
   config.gem "exodus"
