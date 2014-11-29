@@ -23,7 +23,7 @@ class PeopleController < ApplicationController
   end
 
   def create
-    @person = Person.new(person_params)
+    @person = Person.new(params[:uuid])
     respond_to do |format|
       if @person.save
         format.json { render :show, status: :created, location: @person }
@@ -33,7 +33,18 @@ class PeopleController < ApplicationController
     end
   end
 
+  def edit
+    @person = Person.find_by_uuid(params[:id])
+    @service_provider = ServiceProvider.find_by_uuid(params[:uuid])
+    @wizard = @service_provider.wizard
+  end
+
   def update
+    uuid = params[:uuid]
+    @person = Person.find_by_uuid(uuid)
+    @service_provider.person.push(@person)
+    @service_provider.save
+    redirect_to @service_provider, notice: @person.first_name + ' ' + @person.last_name + ' was added to your client list.'
     respond_to do |format|
       if @person.update_attributes(person_params)
         format.json { render :show, status: :ok, location: @person }

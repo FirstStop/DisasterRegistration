@@ -63,6 +63,6 @@ registration_wizard = Wizard::Wizard.new(content: [
 ])
 ServiceProvider.create!(name: 'FirstStop', wizard: registration_wizard, special_role: :registration)
 
-ServiceProvider.create!(name: 'Australian Red Cross', person: Person.all[1..10])
+ServiceProvider.create!(name: 'Australian Red Cross', wizard: registration_wizard, person: Person.all[1..10])
 ServiceProvider.create!(name: 'Lions Clubs', person: Person.all[5..15])
 ServiceProvider.create!(name: 'The Salvation Army', person: Person.all[10..20])

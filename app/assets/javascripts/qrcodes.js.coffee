@@ -62,7 +62,7 @@ $ ->
       personId = extractUUIDFromQRCode(qrcode.decode())
       unless $("#person").data("uuid") is personId
         closeWebcam()
-        window.location.href = "#{action}?uuid=#{personId}"
+        window.location.href = action.replace("{{uuid}}", personId)
     catch e
       console.log e
     setTimeout captureToCanvas, 500

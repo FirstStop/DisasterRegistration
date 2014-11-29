@@ -1,30 +1,27 @@
 <p id="notice"><%= notice %></p>
 
-<div class="ui blue segment">
-  <h3>Basic Details</h3>
+<div class="details"><%= @service_provider.name %></div>
 
-  <div class="ui one column grid">
-    <div class="row">
-      <div class="column">
-        <small>Name</small>
-        <div class="details"><%= @service_provider.name %></div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="column">
-        <%= link_to 'Edit', edit_service_provider_path(@service_provider) %> |
-        <%= link_to 'Back', service_providers_path %> |
-        <a id="scan-badge" href="#">Scan Badge</a>
-      </div>
-    </div>
-
-    <div id="qr_scanner" style="display:none;margin-left:20px;margin-top:20px;" data-enabled="false" data-action="<%= add_person_service_provider_path(@service_provider) %>">
-      <video id="video" style="height:200px;" autoplay></video>
-      <canvas id="qr-canvas" width="800" height="600" style="display:none;width:800px;height:600px;"></canvas>
-    </div>
+<div>
+  <div class="ui huge inverted center aligned icon header"><%= image_tag("firststop_logo_sml.png", alt:"") %></div>
+  <div class="ui huge red center aligned icon header">Align the QR code to scan.</div>
+  <div id="qr_scanner" class="ui huge inverted center aligned icon header" 
+      data-enabled="true" 
+      data-action="<%= service_provider_path(@service_provider)%>/people/{{uuid}}/edit">
+    <video id="video" style="height:200px;" autoplay></video>
+    <canvas id="qr-canvas" width="800" height="600" style="display:none;width:800px;height:600px;"></canvas>
   </div>
+  <div id="wait" class="ui huge inverted center aligned icon header" data-enabled="true">
+    <input type="text" value="0" class="dial"
+      data-fgColor="#0971CE"
+      data-displayInput="false"
+      data-step="1"
+      data-min="0"
+      data-max="1000">
+  </div>
+</div>
 
+<div>
   <table class="ui table segment">
     <thead>
     <tr>
@@ -36,7 +33,7 @@
     <tbody>
     <% @service_provider.person.each do |person| %>
       <tr>
-        <td><%= link_to person.name, person %></td>
+        <td><%= person.name %></td>
         <td><%= person.dob %></td>
       </tr>
     <% end %>
@@ -44,3 +41,21 @@
   </table>
   <%= @service_provider.clients.size %> clients total
 </div>
+
+
+<script>
+$(function() {
+  $(".dial").hide();
+
+  $(".dial").bind('go', function() {
+    $(".dial").knob();
+    $({value: 0})
+    .animate({value: 1000}, {
+      duration: 500, easing: "swing",
+      step: function() {
+        $(".dial").val(Math.ceil(this.value)).trigger("change");
+      }
+    })
+  })
+});
+</script>
