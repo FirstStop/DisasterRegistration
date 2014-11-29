@@ -1,6 +1,10 @@
 module Wizard
   class Input < Component
-    attr_accessor :id, :text, :placeholder, :type, :additional_container_class
+    key :attribute, String
+    key :label, String
+    key :placeholder, String
+    key :type, String
+    key :additional_container_class, String
 
     def initialize(params)
       super

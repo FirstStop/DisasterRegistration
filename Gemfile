@@ -46,6 +46,7 @@ gem 'public_activity'
 
 
 gem 'httparty'
+gem 'enumerize'
 
 
 group :production do

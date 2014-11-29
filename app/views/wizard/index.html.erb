@@ -5,20 +5,9 @@
     <%= image_tag("logo_tagline.png", class:'ui image right floated', style: "width: 38%") %>
   </div>
 
-  <% @model.each do |node| %>
-    <div class="ui form" wizard-node="<%= node.id %>">
-      <form>
-        <% node.content.each do |component| %>
-          <%= render component.template_name, component: component %>
-        <% end %>
-      </form>
-    </div>
-  <% end %>
+  <%= render 'wizard', wizard: @model %>
+  <%= render 'progressbar' %>
 
-  <div class="ui teal progress" id="wizard-progress">
-    <div class="bar">
-      <div class="label"></div>
-    </div>
-  </div>
+
 
 </div>

@@ -74,6 +74,8 @@ GEM
     database_cleaner (1.3.0)
     diff-lcs (1.2.5)
     docile (1.1.5)
+    enumerize (0.8.0)
+      activesupport (>= 3.2)
     erubis (2.7.0)
     eventmachine (1.0.3)
     execjs (2.2.2)
@@ -235,6 +237,7 @@ DEPENDENCIES
   cucumber-rails
   cups (~> 0.1.9)
   database_cleaner
+  enumerize
   exodus
   factory_girl_rails
   httparty

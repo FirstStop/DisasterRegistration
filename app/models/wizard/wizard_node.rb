@@ -1,5 +1,6 @@
 module Wizard
   class WizardNode < Component
-    attr_accessor :id, :content
+    key :name, String
+    many :content, class: Component
   end
 end

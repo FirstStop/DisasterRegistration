@@ -1,5 +1,6 @@
 module Wizard
   class ImageSelector < Component
-    attr_accessor :id, :images
+    key :attribute, String
+    key :images, Array
   end
 end

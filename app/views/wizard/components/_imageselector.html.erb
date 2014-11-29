@@ -1,5 +1,5 @@
 <div class="field images small ui image_selector">
-  <input type="hidden" name="<%= component.id %>">
+  <input type="hidden" name="<%= component.attribute %>">
    <% component.images.each do |img_url| %>
     <%= image_tag(img_url, class:'ui image', data: {img_name: img_url}) %>
 <% end %>
