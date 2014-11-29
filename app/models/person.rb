@@ -61,7 +61,6 @@ UID:urn:uuid:#{uuid}
 TEL;HOME;voice:#{current_contact_phone}
 ADR:;;#{address};#{suburb};#{state};#{postcode}
 EMAIL:#{email}
-NOTE:super power: #{super_power || 'unkown'} - fun fact:#{fun_fact || 'unkown'}
 END:VCARD
     eos
   end

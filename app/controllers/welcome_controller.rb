@@ -5,6 +5,5 @@ class WelcomeController < ApplicationController
   end
 
   def index
-    render layout: 'without_menu'
   end
 end

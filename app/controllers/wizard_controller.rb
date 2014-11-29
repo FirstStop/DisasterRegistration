@@ -25,20 +25,7 @@ class WizardController < ApplicationController
             Wizard::Paragraph.new(text: "Note: Everybody who scans the QR code on your badge will be able to see these details, so please only enter details that you are happy to share."),
             Wizard::Input.new(id: "email", text: 'E-Mail', placeholder: ''),
             Wizard::Input.new(id: "current_contact_phone", text: 'Phone number', placeholder: ''),
-            Wizard::NextButton.new(target: 'wizard.fun_fact', text: 'Next')
-        ]),
-
-        Wizard::WizardNode.new(id: 'wizard.fun_fact', content: [
-           Wizard::Headline.new(text: "To break the ice..."),
-           Wizard::Input.new(id: "super_power", text: 'Whats your super-power?  (on badge)', placeholder: ''),
-           Wizard::Input.new(id: "fun_fact", text: 'Tell us something funny about you?', placeholder: ''),
-           Wizard::NextButton.new(target: 'wizard.avatar', text: 'Next')
-       ]),
-
-        Wizard::WizardNode.new(id: 'wizard.avatar', content: [
-            Wizard::Headline.new(text: "Select an avatar"),
-            Wizard::ImageSelector.new(id: "avatar", images: ['superheros/adamstrange256.png', 'superheros/aquaman256.png', 'superheros/atom256.png', 'superheros/batman256.png', 'superheros/boostergold256.png', 'superheros/captainmarvel256.png', 'superheros/catwoman256.png', 'superheros/flash256.png', 'superheros/greenarrow256.png', 'superheros/greenlantern256.png', 'superheros/kittypryde256.png',  'superheros/robin256.png', 'superheros/rorschach256.png', 'superheros/spiderman256.png', 'superheros/superman256.png', 'superheros/wolverine256.png']),
-            Wizard::SubmitButton.new(target: 'wizard.register', text: 'Register')
+            Wizard::SubmitButton.new(target: 'wizard.register', text: 'Next')
         ]),
 
         Wizard::WizardNode.new(id: 'wizard.register', content: [
