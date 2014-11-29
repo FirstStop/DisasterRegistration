@@ -1,10 +1,6 @@
 
 class PeopleController < ApplicationController
-    before_action :set_person, only: [:show, :edit, :update, :destroy, :qr, :token, :print_token]
-  before_action :set_menu
-  def set_menu
-    @menu = {people: true}
-  end
+  before_action :set_person, only: [:show, :update]
 
   def show
     log_access "view person details: #{@person.uuid}"
@@ -56,10 +52,6 @@ class PeopleController < ApplicationController
       @person = Person.find(params[:id])
     end
 
-    def log_access(action)
-      username = current_user ? current_user.username : 'ANONYMOUS'
-        logger.info "User: <#{username}>; Action: <#{action}>"
-    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def person_params
@@ -70,7 +62,6 @@ class PeopleController < ApplicationController
           :current_contact_name, :current_contact_phone, :current_contact_email, :current_contact_description,
           :injury_description, :transport, :house_status, :others_at_address, :pet_details, :current_situation,
           :avatar, :fun_fact, :super_power, :speciality, :nickname,
-          :authenticable => [:id, :username, :password, :password_confirmation]
       )
     end
 end

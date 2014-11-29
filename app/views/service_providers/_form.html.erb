@@ -25,10 +25,6 @@
     </div>
   </div>
 
-  <%= f.fields_for :authenticable, @service_provider.authenticable do |builder| %>
-      <%= render "session/form", :f => builder %>
-  <% end %>
-
     <div class="actions">
       <%= f.submit %>
     </div>

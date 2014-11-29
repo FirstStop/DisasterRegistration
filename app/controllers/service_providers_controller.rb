@@ -1,9 +1,5 @@
 class ServiceProvidersController < ApplicationController
   before_action :set_service_provider, only: [:show, :edit, :update, :destroy, :add_person]
-  before_action :set_menu
-  def set_menu
-    @menu = {service_providers: true}
-  end
 
   # GET /service_providers
   # GET /service_providers.json
@@ -82,6 +78,6 @@ class ServiceProvidersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def service_provider_params
-      params.require(:service_provider).permit(:name, :services_supplies, :authenticable => [:id, :username, :password, :password_confirmation])
+      params.require(:service_provider).permit(:name, :services_supplies)
     end
 end
