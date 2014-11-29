@@ -64,6 +64,7 @@ group :test do
 
   gem "codeclimate-test-reporter"
   gem 'coveralls'
+  gem 'scrutinizer-ocular'
 end
 
 # Use ActiveModel has_secure_password

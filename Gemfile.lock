@@ -175,6 +175,8 @@ GEM
       sass (~> 3.2.2)
       sprockets (~> 2.8, < 2.12)
       sprockets-rails (~> 2.0)
+    scrutinizer-ocular (1.0.1)
+      simplecov (>= 0.7)
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
@@ -251,6 +253,7 @@ DEPENDENCIES
   rails_12factor
   rqrcode_png
   sass-rails (~> 4.0.3)
+  scrutinizer-ocular
   sdoc (~> 0.4.0)
   selenium-webdriver
   semantic-ui-sass (~> 0.19.3.1)
