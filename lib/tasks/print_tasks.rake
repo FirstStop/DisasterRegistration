@@ -12,6 +12,8 @@ end
 
 desc 'loop continuously checking for new registrations to print'
 task :print_loop, [:base_url] do |cmd, args|
+  Bundler.require(:printing)
+
   last_known = File.open("last_known.txt").read
 
   while true do

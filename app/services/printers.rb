@@ -1,7 +1,3 @@
-require 'cups'
-require 'cups/printer/printer'
-require 'cups/print_job/transient'
-
 module Services
   class Printers
     def self.print_token(file, media, printer_name=nil)

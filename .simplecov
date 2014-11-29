@@ -9,6 +9,3 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
   CodeClimate::TestReporter::Formatter,
   Scrutinizer::Ocular::UploadingFormatter
 ]
-
-
-SimpleCov.start 'rails'
