@@ -15,6 +15,11 @@ showNextStep = (name) ->
       offset: -30
     })
 
+showSpinner = (element) ->
+  $(element).addClass('loading disabled').attr('readonly', 'readonly')
+hideSpinner = (element) ->
+  $(element).removeClass('loading disabled').attr('readonly', undefined)
+
 getData = ->
   result = {}
   for raw_input in $('input,select,textarea')
@@ -23,8 +28,10 @@ getData = ->
   result
 
 submitForm = (nextStep) ->
+  showSpinner('input[wizard-submit],button[wizard-submit]')
   data = person: getData()
   $.post '/people.json', data, (response) ->
+    hideSpinner('input[wizard-submit],button[wizard-submit]')
     updateQRCode(response.id)
     showNextStep(nextStep)
 
@@ -44,8 +51,8 @@ $(document).ready ->
     false
 
   $('input[wizard-submit],button[wizard-submit]').click ->
-    name = $(this).attr('wizard-submit')
-    submitForm(name)
+    nextStep = $(this).attr('wizard-submit')
+    submitForm(nextStep)
     makeFormReadOnly()
     false
 
