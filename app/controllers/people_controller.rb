@@ -3,8 +3,6 @@ class PeopleController < ApplicationController
   before_action :set_person, only: [:show, :update]
 
   def show
-    log_access "view person details: #{@person.uuid}"
-
     respond_to do |format|
       format.png do
           qr_code = Services::Token.qr_code(@person, 8).to_img.resize(400, 400)
@@ -22,7 +20,6 @@ class PeopleController < ApplicationController
       }
       format.json { render :json => @person }
     end
-
   end
 
   def create
