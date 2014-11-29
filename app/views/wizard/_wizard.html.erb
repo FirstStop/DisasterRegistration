@@ -1,3 +1,10 @@
-<% wizard.content.each do |component| %>
-  <%= render component.template_name, component: component %>
-<% end %>
+<div wizard="wizard">
+
+  <% wizard.content.each do |component| %>
+    <%= render component.template_name, component: component %>
+  <% end %>
+
+  <%= render 'wizard/progressbar' %>
+
+</div>
+

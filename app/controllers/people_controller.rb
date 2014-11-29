@@ -46,6 +46,10 @@ class PeopleController < ApplicationController
     end
   end
 
+  def new
+    @wizard = ServiceProvider.find_by_special_role(:registration).wizard
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_person

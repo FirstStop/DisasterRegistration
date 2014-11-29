@@ -58,7 +58,7 @@ registration_wizard = Wizard::Wizard.new(content: [
         Wizard::Headline.new(text: "Thank you for your registration"),
         Wizard::Paragraph.new(text: "Please collect your name badge from the printing station and start networking with your fellow hackers."),
         Wizard::Qr.new(),
-        Wizard::Link.new(target: '/wizard', label: 'Start over')
+        Wizard::Link.new(target: '/people/new', label: 'Start over')
     ]),
 ])
 ServiceProvider.create!(name: 'FirstStop', wizard: registration_wizard, special_role: :registration)

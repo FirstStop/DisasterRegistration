@@ -1,42 +1,31 @@
 @import "mixins";
 
-.wizard {
-  body {
-    @include full-image-background('EM0524.jpg')
+div[wizard] {
+  div[wizard-node] {
+    @include wizard-node;
+    @include transparent-background;
+    @include no-page-break-during-printing;
   }
+}
 
-  .menu {
-    display: none;
+.ui.image {
+  padding: 10px;
+  border: 1px dashed transparent;
+
+  &.active {
+    border-color: gray;
   }
+}
 
-  div[wizard] {
-    div[wizard-node] {
-      @include wizard-node;
-      @include transparent-background;
-      @include no-page-break-during-printing;
-    }
+.ui.progress {
+  position: fixed;
+  bottom: 0px;
+  border-radius: 0px;
+  left: 0px;
+  right: 0px;
+
+  .label {
+    padding-left: 10px;
+    line-height: 23px;
   }
-
-  .ui.image {
-    padding: 10px;
-    border: 1px dashed transparent;
-
-    &.active {
-      border-color: gray;
-    }
-  }
-
-  .ui.progress {
-    position: fixed;
-    bottom: 0px;
-    border-radius: 0px;
-    left: 0px;
-    right: 0px;
-
-    .label {
-      padding-left: 10px;
-      line-height: 23px;
-    }
-  }
-
 }
