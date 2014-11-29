@@ -6,18 +6,6 @@ class PeopleController < ApplicationController
     @menu = {people: true}
   end
 
-  # GET /people
-  # GET /people.json
-  def index
-    @people = Person.all
-    log_access "view people: #{@people.map(&:uuid)}"
-  end
-
-  # GET /people/1
-  # GET /people/1.json
-  # GET /people/1.png
-  # GET /people/1.vcf
-  # GET /people/1.pdf
   def show
     log_access "view person details: #{@person.uuid}"
 
@@ -37,79 +25,28 @@ class PeopleController < ApplicationController
           send_data pdf.render, filename: "token-#{@person.id}.pdf", type: 'application/pdf'
       }
       format.json { render :json => @person }
-      format.html { render :show }
     end
 
   end
-  # GET /people/1/qr
-  def qr
-      log_access "view person print out: #{@person.uuid}"
-  end
-  
-  # GET /people/1/token
-  def qr
-      log_access "view person print out: #{@person.uuid}"
-  end
 
-  # GET /people/1/print_token
-  def print_token
-      respond_to do |format|
-          format.html {
-             pdf = Services::Token.generate_token_pdf(@person, 'DC04')
-             file = Tempfile.new('')
-             file.puts(pdf.render.force_encoding('UTF-8'))
-             file.close
-
-             Services::Printers.print_token(file, "DC04")
-             redirect_to people_url, notice: 'Person was successfully printed.'}
-      end
-  end
-
-  # GET /people/new
-  def new
-    @person = Person.new
-  end
-
-  # GET /people/1/edit
-  def edit
-  end
-
-  # POST /people
-  # POST /people.json
   def create
     @person = Person.new(person_params)
     respond_to do |format|
       if @person.save
-        format.html { redirect_to @person, notice: 'Person was successfully created.' }
         format.json { render :show, status: :created, location: @person }
       else
-        format.html { render :new }
         format.json { render json: @person.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /people/1
-  # PATCH/PUT /people/1.json
   def update
     respond_to do |format|
       if @person.update_attributes(person_params)
-        format.html { redirect_to @person, notice: 'Person was successfully updated.' }
         format.json { render :show, status: :ok, location: @person }
       else
-        format.html { render :edit }
         format.json { render json: @person.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # DELETE /people/1
-  # DELETE /people/1.json
-  def destroy
-    @person.destroy
-    respond_to do |format|
-      format.html { redirect_to people_url, notice: 'Person was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 
