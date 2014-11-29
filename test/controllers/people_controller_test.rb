@@ -9,15 +9,9 @@ class PeopleControllerTest < ActionController::TestCase
     assert_difference('Person.count') do
       post :create, 
         person: { 
-            address: @person.address, 
-            current_contact_description: @person.current_contact_description, 
-            current_contact_email: @person.current_contact_email, 
-            current_contact_name: @person.current_contact_name, 
-            current_contact_phone: @person.current_contact_phone, 
-            dob: @person.dob, 
-            email: @person.email, 
-            first_name: @person.first_name, 
-            last_name: @person.last_name }, format: :json
+            field1: 'Field 1',
+            field2: 'Field 2',
+        }, format: :json
     end
 
     assert_response :success
@@ -30,16 +24,9 @@ class PeopleControllerTest < ActionController::TestCase
 
   test "should update person" do
     patch :update, id: @person, 
-      person: { 
-        address: @person.address, 
-        current_contact_description: @person.current_contact_description, 
-        current_contact_email: @person.current_contact_email, 
-        current_contact_name: @person.current_contact_name, 
-        current_contact_phone: @person.current_contact_phone, 
-        dob: @person.dob, 
-        email: @person.email, 
-        first_name: @person.first_name, 
-        last_name: @person.last_name }, format: :json
+      person: {
+          field1: 'Field 1 - Update',
+          field2: 'Field 2 - Update',}, format: :json
 
     assert_response :success
   end
