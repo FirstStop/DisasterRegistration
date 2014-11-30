@@ -45,6 +45,8 @@ gem 'jquery-smooth-scroll-rails'
 
 gem 'public_activity'
 
+gem 'render_csv'
+
 
 gem 'httparty'
 gem 'enumerize'
