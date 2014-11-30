@@ -11,6 +11,10 @@ class ServiceProvidersController < ApplicationController
   # GET /service_providers/1.json
   def show
     @workbench = @service_provider.workbench
+    respond_to do |format|
+      format.html  { render  }
+      format.csv  { render csv: @service_provider.person, only: ['_id'] + @workbench.table_attributes.keys  }
+    end
   end
 
   # GET /service_providers/new

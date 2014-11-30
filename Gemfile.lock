@@ -168,6 +168,8 @@ GEM
     rake (10.4.0)
     rdoc (4.1.2)
       json (~> 1.4)
+    render_csv (2.0.0)
+      rails (>= 3.0)
     rest-client (1.7.2)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
@@ -259,6 +261,7 @@ DEPENDENCIES
   public_activity
   rails (= 4.1.1)
   rails_12factor
+  render_csv
   rqrcode_png
   sass-rails (~> 4.0.3)
   scrutinizer-ocular
