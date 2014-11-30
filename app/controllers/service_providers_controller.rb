@@ -10,6 +10,7 @@ class ServiceProvidersController < ApplicationController
   # GET /service_providers/1
   # GET /service_providers/1.json
   def show
+    @workbench = @service_provider.workbench
   end
 
   # GET /service_providers/new

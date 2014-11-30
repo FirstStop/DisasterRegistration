@@ -22,24 +22,36 @@
 </div>
 
 <div>
-  <table class="ui table segment">
+  <table class="ui table segment sortable">
     <thead>
-    <tr>
-      <th>Name</th>
-      <th>DOB</th>
-    </tr>
+      <tr>
+        <% @workbench.table_attributes.each do |attribute, label| %>
+          <th><%= label %></th>
+        <% end %>
+      </tr>
     </thead>
 
     <tbody>
-    <% @service_provider.person.each do |person| %>
-      <tr>
-        <td><%= person.name %></td>
-        <td><%= person.dob %></td>
-      </tr>
-    <% end %>
+      <% @service_provider.person.each do |person| %>
+        <tr class="<%= person[:status] %>">
+          <% @workbench.table_attributes.each do |attribute, label| %>
+            <% if attribute == @workbench.status_attribute %>
+              <td class="<%= @workbench.statuses[person[attribute]].try(:[], 'css_class') %>"><%= @workbench.statuses[person[attribute]].try(:[], 'label') %></td>
+            <% else %>
+              <td><%= person[attribute] %></td>
+            <% end %>
+          <% end %>
+        </tr>
+      <% end %>
     </tbody>
+
+    <tfoot>
+      <tr>
+        <th colspan="<%= @workbench.table_attributes.size %>"><%= @service_provider.clients.size %> clients total</th>
+      </tr>
+    </tfoot>
   </table>
-  <%= @service_provider.clients.size %> clients total
+
 </div>
 
 

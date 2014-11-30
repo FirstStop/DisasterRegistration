@@ -7,7 +7,7 @@ class Person
     timestamps!
 
     def new(args)
-      args.each do |key | value|
+      args.each do |key, value|
         self[key] = value
       end
     end
