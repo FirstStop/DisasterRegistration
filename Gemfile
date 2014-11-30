@@ -34,6 +34,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 #css
 gem 'semantic-ui-sass', '~> 0.19.3.1'
+gem 'jquery-tablesorter', git: 'https://github.com/themilkman/jquery-tablesorter-rails.git'
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring', group: :development

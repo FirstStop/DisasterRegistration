@@ -5,16 +5,16 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-Person.create!(id: '000000000000000000000001', first_name: 'Tony', last_name: 'Donnaldsen', gender: 'Male', address: '14 Greentree Street', suburb: 'Winmalee', postcode: '2777', state: 'NSW')
-Person.create!(id: '000000000000000000000002', first_name: 'Liz', last_name: 'Donnaldsen', gender: 'Female', address: '14 Greentree Street', suburb: 'Winmalee', postcode: '2777', state: 'NSW')
+Person.create!(id: '000000000000000000000001', first_name: 'Tony', last_name: 'Donnaldsen', gender: 'Male', address: '14 Greentree Street', suburb: 'Winmalee', postcode: '2777', state: 'NSW', housing_status: 'has_house')
+Person.create!(id: '000000000000000000000002', first_name: 'Liz', last_name: 'Donnaldsen', gender: 'Female', address: '14 Greentree Street', suburb: 'Winmalee', postcode: '2777', state: 'NSW', housing_status: 'has_house')
 Person.create!(id: '000000000000000000000003', first_name: 'Jackie', last_name: 'Ferus', gender: 'Female', address: '23 Yelbon Avenue', suburb: 'Yellow Rock', postcode: '2777', state: 'NSW')
-Person.create!(id: '000000000000000000000004', first_name: 'Bill Sigismund', last_name: 'Geyar', gender: 'Male', address: '48 Leafie Parade', suburb: 'Yellow Rock', postcode: '2777', state: 'NSW')
+Person.create!(id: '000000000000000000000004', first_name: 'Bill Sigismund', last_name: 'Geyar', gender: 'Male', address: '48 Leafie Parade', suburb: 'Yellow Rock', postcode: '2777', state: 'NSW', housing_status: 'needs_housing_tonight')
 Person.create!(id: '000000000000000000000005', first_name: 'Wendy', last_name: 'Geyar', gender: 'Female', address: '48 Leafie Parade', suburb: 'Yellow Rock', postcode: '2777', state: 'NSW')
 Person.create!(id: '000000000000000000000006', first_name: 'Dom', last_name: 'Knight', gender: 'Male', address: '11 Barnstorm Street', suburb: 'Winmalee', postcode: '2777', state: 'NSW')
 Person.create!(id: '000000000000000000000007', first_name: 'Leena', last_name: 'Lancasta', gender: 'Female', address: '44 Yelbon Avenue', suburb: 'Yellow Rock', postcode: '2777', state: 'NSW')
-Person.create!(id: '000000000000000000000008', first_name: 'Richard James', last_name: 'Ledgend', gender: 'Male', address: '15 Timberland Close', suburb: 'Springwood', postcode: '2777', state: 'NSW')
-Person.create!(id: '000000000000000000000009', first_name: 'Beth', last_name: 'Ledgend', gender: 'Female', address: '15 Timberland Close', suburb: 'Springwood', postcode: '2777', state: 'NSW')
-Person.create!(id: '000000000000000000000010', first_name: 'Gordon Princheps', last_name: 'Murphay', gender: 'Male', address: '8 Raglin Street', suburb: 'Yellow Rock', postcode: '2777', state: 'NSW')
+Person.create!(id: '000000000000000000000008', first_name: 'Richard James', last_name: 'Ledgend', gender: 'Male', address: '15 Timberland Close', suburb: 'Springwood', postcode: '2777', state: 'NSW', housing_status: 'needs_housing_tonight')
+Person.create!(id: '000000000000000000000009', first_name: 'Beth', last_name: 'Ledgend', gender: 'Female', address: '15 Timberland Close', suburb: 'Springwood', postcode: '2777', state: 'NSW', housing_status: 'needs_housing_tonight')
+Person.create!(id: '000000000000000000000010', first_name: 'Gordon Princheps', last_name: 'Murphay', gender: 'Male', address: '8 Raglin Street', suburb: 'Yellow Rock', postcode: '2777', state: 'NSW', housing_status: 'needs_housing_this_week')
 Person.create!(id: '000000000000000000000011', first_name: 'John', last_name: 'Pearl', gender: 'Male', address: '42 Puncher Avenue', suburb: 'Yellow Rock', postcode: '2777', state: 'NSW')
 Person.create!(id: '000000000000000000000012', first_name: 'Carlita', last_name: 'Pearl', gender: 'Female', address: '16 Munrow Street', suburb: 'Winmalee', postcode: '2777', state: 'NSW')
 Person.create!(id: '000000000000000000000013', first_name: 'Tim Fanshaw', last_name: 'Pulver', gender: 'Male', address: '18 Munrow Street', suburb: 'Winmalee', postcode: '2777', state: 'NSW')
@@ -26,6 +26,15 @@ Person.create!(id: '000000000000000000000018', first_name: 'Seth', last_name: 'W
 Person.create!(id: '000000000000000000000019', first_name: 'Jane', last_name: 'Wilsun', gender: 'Female', address: '44 Redgum Close', suburb: 'Winmalee', postcode: '2777', state: 'NSW')
 Person.create!(id: '000000000000000000000020', first_name: 'Irene', last_name: 'Yung', gender: 'Female', address: '85 Filmore Street', suburb: 'Winmalee', postcode: '2777', state: 'NSW')
 
+
+default_workbench = Workbench::Workbench.new(
+    table_attributes: {'first_name' => 'First name', 'last_name' => 'Last name', 'housing_status' => 'Housing status'},
+    status_attribute: 'housing_status',
+    statuses: {
+        has_house: {css_class: 'positive', label: 'has House'},
+        needs_housing_tonight:  {css_class: 'negative', label: 'no housing'},
+        needs_housing_this_week: {css_class: 'warning', label: 'needs housing within next week'},
+    })
 
 registration_wizard = Wizard::Wizard.new(content: [
     Wizard::WizardNode.new(name: 'wizard.welcome', content: [
@@ -61,8 +70,8 @@ registration_wizard = Wizard::Wizard.new(content: [
         Wizard::Link.new(target: '/people/new', label: 'Start over')
     ]),
 ])
-ServiceProvider.create!(name: 'FirstStop', wizard: registration_wizard, special_role: :registration)
+ServiceProvider.create!(name: 'FirstStop', wizard: registration_wizard, workbench: default_workbench, special_role: :registration, person: Person.all)
 
-ServiceProvider.create!(name: 'Australian Red Cross', wizard: registration_wizard, person: Person.all[1..10])
-ServiceProvider.create!(name: 'Lions Clubs', person: Person.all[5..15])
-ServiceProvider.create!(name: 'The Salvation Army', person: Person.all[10..20])
+ServiceProvider.create!(name: 'Australian Red Cross', wizard: registration_wizard, workbench: default_workbench, person: Person.all[1..10])
+ServiceProvider.create!(name: 'Lions Clubs', workbench: default_workbench, person: Person.all[5..15])
+ServiceProvider.create!(name: 'The Salvation Army', workbench: default_workbench, person: Person.all[10..20])
