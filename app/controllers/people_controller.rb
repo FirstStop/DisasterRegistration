@@ -23,7 +23,7 @@ class PeopleController < ApplicationController
   end
 
   def create
-    @person = Person.new(params[:uuid])
+    @person = Person.new(person_params)
     respond_to do |format|
       if @person.save
         format.json { render :show, status: :created, location: @person }
@@ -67,13 +67,6 @@ class PeopleController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def person_params
-
-      params.require(:person).permit(
-          :first_name, :last_name, :dob, :sex, :has_privacy_concerns, :mobile, :email,
-          :address, :suburb, :state, :postcode,
-          :current_contact_name, :current_contact_phone, :current_contact_email, :current_contact_description,
-          :injury_description, :transport, :house_status, :others_at_address, :pet_details, :current_situation,
-          :avatar, :fun_fact, :super_power, :speciality, :nickname,
-      )
+      params.require(:person).except!(:uuid, :created_at, :updated_at).permit!
     end
 end

@@ -13,7 +13,7 @@ gem 'exodus'
 gem 'rqrcode_png'
 
 # Printing
-gem 'cups', '~> 0.1.9'
+gem 'cups', '~> 0.1.9', group: :printing, require: ['cups', 'cups/printer/printer', 'cups/print_job/transient']
 gem 'prawn', '~> 1.3.0'
 
 # Use SCSS for stylesheets
@@ -64,6 +64,7 @@ group :test do
 
   gem "codeclimate-test-reporter"
   gem 'coveralls'
+  gem 'scrutinizer-ocular'
 end
 
 # Use ActiveModel has_secure_password
