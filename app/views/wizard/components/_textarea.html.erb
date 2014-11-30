@@ -1,3 +1,5 @@
 <div class="field">
-  <textarea name="<%= component.attribute %>" placeholder="<%= component.placeholder %>" width="100%"></textarea>
+  <textarea name="<%= component.attribute %>" placeholder="<%= component.placeholder %>" width="100%">
+    <%= component.get_value(person) %>
+  </textarea>
 </div>

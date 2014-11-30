@@ -1,4 +1,4 @@
 <div class="field <%= component.additional_container_class %>">
   <label><%= component.label %></label>
-  <input name="<%= component.attribute %>" placeholder="<%= component.placeholder %>" type="<%= component.type %>">
+  <input name="<%= component.attribute %>" placeholder="<%= component.placeholder %>" value="<%= component.get_value(person) %>" type="<%= component.type %>">
 </div>

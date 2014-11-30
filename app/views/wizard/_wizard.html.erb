@@ -1,7 +1,7 @@
 <div wizard="wizard">
 
   <% wizard.content.each do |component| %>
-    <%= render component.template_name, component: component %>
+    <%= render component.template_name, component: component, person: @person %>
   <% end %>
 
   <%= render 'wizard/progressbar' %>
