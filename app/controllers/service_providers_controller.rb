@@ -12,15 +12,6 @@ class ServiceProvidersController < ApplicationController
   def show
   end
 
-  # GET /service_providers/1/add_person
-  def add_person
-    uuid = params[:uuid]
-    @person = Person.find_by_uuid(uuid)
-    @service_provider.person.push(@person)
-    @service_provider.save
-    redirect_to @person, notice: @person.first_name + ' ' + @person.last_name + ' was added to your client list.'
-  end
-
   # GET /service_providers/new
   def new
     @service_provider = ServiceProvider.new
@@ -70,13 +61,11 @@ class ServiceProvidersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_service_provider
       @service_provider = ServiceProvider.find(params[:id])
       logger.debug "From mongo #{@service_provider.to_mongo}"
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def service_provider_params
       params.require(:service_provider).permit(:name)
     end

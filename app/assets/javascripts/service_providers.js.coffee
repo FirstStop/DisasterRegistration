@@ -1,3 +1,10 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+delay = (ms, func) -> setTimeout func, ms
+
+$(document).ready ->
+  redirect_delay = $('#demo').data('delay')
+  return unless redirect_delay
+  delay redirect_delay, ->
+    $('#person').transition
+      animation : 'fade up'
+      duration  : '2s'
+      complete  : -> window.location.assign("/demo")

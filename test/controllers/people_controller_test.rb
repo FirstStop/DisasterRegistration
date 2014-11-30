@@ -23,7 +23,9 @@ class PeopleControllerTest < ActionController::TestCase
   end
 
   test "should update person" do
-    patch :update, id: @person, 
+    patch :update, 
+      id: @person, 
+      service_provider_id:  FactoryGirl.create(:service_provider).id,
       person: {
           field1: 'Field 1 - Update',
           field2: 'Field 2 - Update',}, format: :json
