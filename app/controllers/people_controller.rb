@@ -1,6 +1,7 @@
 
 class PeopleController < ApplicationController
-  before_action :set_person, only: [:show, :update]
+  before_action :set_person, only: [:show, :update, :edit]
+  before_action :set_service_provider, only: [:edit, :update]
 
   def show
     respond_to do |format|
@@ -34,17 +35,12 @@ class PeopleController < ApplicationController
   end
 
   def edit
-    @person = Person.find_by_uuid(params[:id])
-    @service_provider = ServiceProvider.find_by_uuid(params[:uuid])
     @wizard = @service_provider.wizard
   end
 
   def update
-    uuid = params[:uuid]
-    @person = Person.find_by_uuid(uuid)
     @service_provider.person.push(@person)
     @service_provider.save
-    redirect_to @service_provider, notice: @person.first_name + ' ' + @person.last_name + ' was added to your client list.'
     respond_to do |format|
       if @person.update_attributes(person_params)
         format.json { render :show, status: :ok, location: @person }
@@ -59,13 +55,14 @@ class PeopleController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_person
       @person = Person.find(params[:id])
     end
 
+    def set_service_provider
+      @service_provider = ServiceProvider.find(params[:service_provider_id])
+    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def person_params
       params.require(:person).except!(:uuid, :created_at, :updated_at).permit!
     end

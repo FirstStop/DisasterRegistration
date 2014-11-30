@@ -69,6 +69,7 @@ $ ->
     return
 
   extractUUIDFromQRCode = (str) ->
+    console.log(str)
     match = str.match(/uuid[:=](.*)$/m)
     return if match then match[1] else ""
 
