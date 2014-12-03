@@ -15,20 +15,8 @@
  *= require semantic-ui
  */
 
-.login {
-  img {
-    float: right;
-  }
-  a {
-    position: relative;
-    top: 25px;
-    float: right;
-  }
-}
+@import "mixins";
 
-.welcome {
-  line-height: 100px;
-}
 
 body,td,th {
   font-family: "Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, sans-serif;
@@ -41,6 +29,6 @@ body,td,th {
   }
 }
 
-.ui.menu {
-  margin-top: -7px;
+body {
+  @include full-image-background('shutterstock_169817054_small.jpg')
 }

@@ -4,10 +4,6 @@
 @import "mixins";
 
 .stream {
-  body {
-    @include full-image-background('EM0524.jpg')
-  }
-
   .ui.feed .event {
     @include transparent-background;
 
