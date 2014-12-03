@@ -53,7 +53,7 @@ gem 'enumerize'
 
 
 group :production do
-  gem 'thin'
+  gem 'unicorn'
   gem 'rails_12factor'
 end
 
