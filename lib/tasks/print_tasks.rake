@@ -7,7 +7,7 @@ def print_token(person)
   file.puts(pdf.render.force_encoding('UTF-8'))
   file.close
 
-  Services::Printers.print_token(file, "DC04", "Brother_QL_500")
+  Services::Printers.print_token(file, 'DC04', 'Brother_QL_570')
 end
 
 desc 'loop continuously checking for new registrations to print'
