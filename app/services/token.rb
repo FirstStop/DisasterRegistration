@@ -43,11 +43,11 @@ module Services
         # width of paper less width of QR code less left margin less right margin less spacing
         textWidth = width - height - leftMargin - spacing - rightMargin
         # Layout is name and email on left and QR code on right with RHoK event name at bottom
-        pdf.text_box "#{person.nickname}", :at => [ leftMargin + height + spacing, height -  spacing] , :width => textWidth, :height => 20, :overflow => :shrink_to_fit
-        pdf.text_box "#{person.speciality}", :at => [leftMargin + height + spacing, height - 20  - spacing], :width => textWidth, :height => 18, :overflow => :shrink_to_fit
+        pdf.text_box person[:nickname], :at => [ leftMargin + height + spacing, height -  spacing] , :width => textWidth, :height => 20, :overflow => :shrink_to_fit
+        pdf.text_box person[:speciality], :at => [leftMargin + height + spacing, height - 20  - spacing], :width => textWidth, :height => 18, :overflow => :shrink_to_fit
 
 # pdf.text_box "#{person.super_power}", :at => [leftMargin + height + spacing, height - 20  - 16 - spacing - spacing], :width => textWidth, :height => 16, :overflow => :shrink_to_fit
-        pdf.text_box "RHoK Sydney November 2014", :at => [leftMargin + height + spacing, spacing], :size => 6
+        pdf.text_box "RHoK Melbourne November 2014", :at => [leftMargin + height + spacing, spacing], :size => 6
         pdf.image StringIO.new(self.qr_code(person, 8).to_img.resize(300, 300).to_blob), :at => [leftMargin, height], :fit => [height, height]
         return pdf
     end
