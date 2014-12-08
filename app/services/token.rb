@@ -49,7 +49,7 @@ module Services
       # Layout is QR code on left and nickname, intended_role, speciality just right of that, with RHoK event name at bottom
       labels = {
         nickname: 20,
-        intended_role: 10,
+        capability: 10,
         speciality: 16
       }
       event_label = 'RHoK Melbourne, December 2014'
