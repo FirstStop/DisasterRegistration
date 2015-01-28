@@ -8,7 +8,7 @@ module Wizard
     end
 
     def get_value(person)
-      person[self.attribute.to_sym]
+      person.try :[], attribute.to_sym
     end
   end
 end
