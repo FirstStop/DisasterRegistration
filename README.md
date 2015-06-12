@@ -3,6 +3,7 @@ RHoK Registration (branch)
 
 ## To modify
 
+
 Edit the form in `db/seeds.rb`.
 Edit the label pdf in `app/services/token.rb`.
 
